@@ -13,21 +13,41 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\core">
+    <Filter Include="Source Files\AircraftGame">
+      <UniqueIdentifier>{5fedaec6-b11a-4a7c-b88f-70306a8a3c3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AircraftGame\util">
+      <UniqueIdentifier>{654ea181-cb9a-4aeb-87ed-b352149d4d6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AircraftGame\core">
       <UniqueIdentifier>{ec6f53e3-7911-4a26-b859-0eb2001d9acf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Resource chapter">
+      <UniqueIdentifier>{c8031034-d9bd-4424-89ba-38c09e1e51bd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\game.cpp">
-      <Filter>Source Files\core</Filter>
+      <Filter>Source Files\AircraftGame\core</Filter>
     </ClCompile>
     <ClCompile Include="source\main.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\AircraftGame</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\Resource chapter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\game.hpp">
-      <Filter>Source Files\core</Filter>
+      <Filter>Source Files\AircraftGame\core</Filter>
     </ClInclude>
+    <ClInclude Include="StringHelpers.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="StringHelpers.inl">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </None>
   </ItemGroup>
 </Project>

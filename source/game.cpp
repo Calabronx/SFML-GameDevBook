@@ -1,4 +1,7 @@
 #include "game.hpp"
+#include "../StringHelpers.hpp"
+
+#include <iostream>
 
 const float Game::PlayerSpeed = 100.0f;
 const sf::Time Game::TimePerFrame = sf::seconds(1.0f / 60.0f);
@@ -6,10 +9,26 @@ const sf::Time Game::TimePerFrame = sf::seconds(1.0f / 60.0f);
 Game::Game()
 	: mWindow(sf::VideoMode(640, 480), "SFML Application")
 	, mPlayer()
+	, mFont()
+	, mStatisticsText()
+	, mStatisticsUpdateTime()
+	, mStatisticsNumFrames(0)
+	, mIsMovingUp(false)
+	, mIsMovingDown(false)
+	, mIsMovingRight(false)
+	, mIsMovingLeft(false)
 {
-	mPlayer.setRadius(40.0f);
+	if (!mTexture.loadFromFile("Media/Textures/Eagle.png"))
+	{
+		std::cout << "Error loading texture file" << std::endl;
+	}
+	mPlayer.setTexture(mTexture);
 	mPlayer.setPosition(100.0f, 100.0f);
-	mPlayer.setFillColor(sf::Color::Cyan);
+
+	mFont.loadFromFile("Media/Sansation.ttf");
+	mStatisticsText.setFont(mFont);
+	mStatisticsText.setPosition(5.0f, 5.0f);
+	mStatisticsText.setCharacterSize(10);
 }
 
 void Game::run()
@@ -17,13 +36,17 @@ void Game::run()
 	sf::Clock clock;
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	while (mWindow.isOpen()) {
-		timeSinceLastUpdate += clock.restart();
+
+		sf::Time elapsedTime = clock.restart();
+		timeSinceLastUpdate += elapsedTime;
 		while (timeSinceLastUpdate > TimePerFrame)
 		{
 			timeSinceLastUpdate -= TimePerFrame;
 			processEvents();
 			update(TimePerFrame);
 		}
+
+		updateStatistics(elapsedTime);
 		render();
 	}
 }
@@ -68,7 +91,24 @@ void Game::render()
 {
 	mWindow.clear();
 	mWindow.draw(mPlayer);
+	mWindow.draw(mStatisticsText);
 	mWindow.display();
+}
+
+void Game::updateStatistics(sf::Time elapsedTime)
+{
+	mStatisticsUpdateTime += elapsedTime;
+	mStatisticsNumFrames += 1;
+
+	if (mStatisticsUpdateTime >= sf::seconds(1.0f))
+	{
+		mStatisticsText.setString(
+			"Frames / Second = " + toString(mStatisticsNumFrames) + "\n" +
+			"Time / Update = " + toString(mStatisticsUpdateTime.asMicroseconds() / mStatisticsNumFrames) + "us");
+
+		mStatisticsUpdateTime -= sf::seconds(1.0f);
+		mStatisticsNumFrames = 0;
+	}
 }
 
 void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
