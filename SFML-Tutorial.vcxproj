@@ -19,11 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="aircraft.hpp" />
+    <ClInclude Include="entity.hpp" />
+    <ClInclude Include="scene_node.hpp" />
     <ClInclude Include="source\core\game.hpp" />
     <ClInclude Include="source\util\StringHelpers.hpp" />
     <ClInclude Include="source\util\resource_holder.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="aircraft.cpp" />
+    <ClCompile Include="entity.cpp" />
+    <ClCompile Include="scene_node.cpp" />
     <ClCompile Include="source\core\game.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\util\resource_holder.inl" />

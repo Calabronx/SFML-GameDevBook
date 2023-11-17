@@ -28,6 +28,9 @@
     <Filter Include="Source Files\BounceApp">
       <UniqueIdentifier>{28909ae2-5339-46b1-9894-cdb3987e7f04}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\AircraftGame\model">
+      <UniqueIdentifier>{fbdae484-03ee-4806-9b46-9e8d332548a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\core\game.hpp">
@@ -39,6 +42,15 @@
     <ClInclude Include="source\util\StringHelpers.hpp">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClInclude>
+    <ClInclude Include="entity.hpp">
+      <Filter>Source Files\AircraftGame\model</Filter>
+    </ClInclude>
+    <ClInclude Include="aircraft.hpp">
+      <Filter>Source Files\AircraftGame\model</Filter>
+    </ClInclude>
+    <ClInclude Include="scene_node.hpp">
+      <Filter>Source Files\AircraftGame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\core\game.cpp">
@@ -48,6 +60,15 @@
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClCompile>
     <ClCompile Include="source\main.cpp">
+      <Filter>Source Files\AircraftGame</Filter>
+    </ClCompile>
+    <ClCompile Include="entity.cpp">
+      <Filter>Source Files\AircraftGame\model</Filter>
+    </ClCompile>
+    <ClCompile Include="aircraft.cpp">
+      <Filter>Source Files\AircraftGame\model</Filter>
+    </ClCompile>
+    <ClCompile Include="scene_node.cpp">
       <Filter>Source Files\AircraftGame</Filter>
     </ClCompile>
   </ItemGroup>
