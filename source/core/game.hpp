@@ -4,6 +4,8 @@
 
 #include<SFML/Graphics.hpp>
 
+#include "../util/StringHelpers.hpp"
+
 class Game
 {
 public:

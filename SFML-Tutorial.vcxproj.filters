@@ -25,28 +25,34 @@
     <Filter Include="Source Files\Resource chapter">
       <UniqueIdentifier>{c8031034-d9bd-4424-89ba-38c09e1e51bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\BounceApp">
+      <UniqueIdentifier>{28909ae2-5339-46b1-9894-cdb3987e7f04}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\game.cpp">
-      <Filter>Source Files\AircraftGame\core</Filter>
-    </ClCompile>
-    <ClCompile Include="source\main.cpp">
-      <Filter>Source Files\AircraftGame</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files\Resource chapter</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="source\game.hpp">
+    <ClInclude Include="source\core\game.hpp">
       <Filter>Source Files\AircraftGame\core</Filter>
     </ClInclude>
-    <ClInclude Include="StringHelpers.hpp">
+    <ClInclude Include="source\util\resource_holder.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
+    <ClInclude Include="source\util\StringHelpers.hpp">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="StringHelpers.inl">
+    <ClCompile Include="source\core\game.cpp">
+      <Filter>Source Files\AircraftGame\core</Filter>
+    </ClCompile>
+    <ClCompile Include="source\util\resource_holder.inl">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClCompile>
+    <ClCompile Include="source\main.cpp">
+      <Filter>Source Files\AircraftGame</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="source\util\StringHelpers.inl">
       <Filter>Source Files\AircraftGame\util</Filter>
     </None>
   </ItemGroup>

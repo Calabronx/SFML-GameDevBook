@@ -19,16 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="source\game.cpp" />
+    <ClInclude Include="source\core\game.hpp" />
+    <ClInclude Include="source\util\StringHelpers.hpp" />
+    <ClInclude Include="source\util\resource_holder.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\core\game.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\util\resource_holder.inl" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\game.hpp" />
-    <ClInclude Include="StringHelpers.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="StringHelpers.inl" />
+    <None Include="source\util\StringHelpers.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
