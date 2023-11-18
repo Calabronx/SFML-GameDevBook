@@ -15,6 +15,9 @@ public:
 	sf::Vector2f getVelocity() const;
 public:
 	sf::Vector2f mVelocity;
+
+private:
+	virtual void updateCurrent(sf::Time dt);
 };
 #endif // !ENTITY_HPP
 
