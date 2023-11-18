@@ -4,7 +4,10 @@
 
 #include<SFML/Graphics.hpp>
 
-class Entity
+#include "../util/scene_node.hpp"
+
+
+class Entity : public SceneNode
 {
 public:
 	void setVelocity(sf::Vector2f velocity);

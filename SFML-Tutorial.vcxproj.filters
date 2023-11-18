@@ -42,14 +42,14 @@
     <ClInclude Include="source\util\StringHelpers.hpp">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClInclude>
-    <ClInclude Include="entity.hpp">
+    <ClInclude Include="source\model\aircraft.hpp">
       <Filter>Source Files\AircraftGame\model</Filter>
     </ClInclude>
-    <ClInclude Include="aircraft.hpp">
+    <ClInclude Include="source\model\entity.hpp">
       <Filter>Source Files\AircraftGame\model</Filter>
     </ClInclude>
-    <ClInclude Include="scene_node.hpp">
-      <Filter>Source Files\AircraftGame</Filter>
+    <ClInclude Include="source\util\scene_node.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -62,14 +62,14 @@
     <ClCompile Include="source\main.cpp">
       <Filter>Source Files\AircraftGame</Filter>
     </ClCompile>
-    <ClCompile Include="entity.cpp">
+    <ClCompile Include="source\model\aircraft.cpp">
       <Filter>Source Files\AircraftGame\model</Filter>
     </ClCompile>
-    <ClCompile Include="aircraft.cpp">
+    <ClCompile Include="source\model\entity.cpp">
       <Filter>Source Files\AircraftGame\model</Filter>
     </ClCompile>
-    <ClCompile Include="scene_node.cpp">
-      <Filter>Source Files\AircraftGame</Filter>
+    <ClCompile Include="source\util\scene_node.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

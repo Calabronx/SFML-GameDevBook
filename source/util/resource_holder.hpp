@@ -9,15 +9,21 @@
 #include <string>
 #include <cassert>
 
+
+namespace sf
+{
+	class Texture;
+}
+
 namespace Textures
 {
 	enum ID
 	{
-		Landscape,
-		Airplane,
-		Missile
+		Eagle,
+		Raptor
 	};
 }
+
 template <typename Resource, typename Identifier>
 class ResourceHolder
 {
@@ -28,13 +34,15 @@ public:
 	void			load(Identifier id, const std::string& filename, const Parameter& secondParam);
 	void			insertResource(Identifier id, std::unique_ptr<Resource> resource);
 
-	Resource&		get(Identifier id);
+	Resource& get(Identifier id);
 	const Resource& get(Identifier id) const;
 
 
 private:
 	std::map<Identifier, std::unique_ptr<Resource>> mResourceMap;
 };
+typedef ResourceHolder<sf::Texture, Textures::ID> TextureHolder;
+
 #endif 
 
 

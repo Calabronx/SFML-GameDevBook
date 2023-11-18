@@ -43,5 +43,5 @@ template<typename Resource, typename Identifier>
 void ResourceHolder<Resource, Identifier>::insertResource(Identifier id, std::unique_ptr<Resource> resource)
 {
 	auto inserted = mResourceMap.insert(std::make_pair(id, std::move(resource)));
-	asserted(inserted.second);
+	assert(inserted.second);
 }

@@ -17,12 +17,12 @@ Game::Game()
 	, mIsMovingRight(false)
 	, mIsMovingLeft(false)
 {
-	if (!mTexture.loadFromFile("Media/Textures/Eagle.png"))
+	/*if (!mTexture.loadFromFile("Media/Textures/Eagle.png"))
 	{
 		std::cout << "Error loading texture file" << std::endl;
 	}
 	mPlayer.setTexture(mTexture);
-	mPlayer.setPosition(100.0f, 100.0f);
+	mPlayer.setPosition(100.0f, 100.0f);*/
 
 	mFont.loadFromFile("Media/Sansation.ttf");
 	mStatisticsText.setFont(mFont);
