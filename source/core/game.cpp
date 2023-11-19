@@ -7,7 +7,7 @@ const sf::Time Game::TimePerFrame = sf::seconds(1.0f / 60.0f);
 
 Game::Game()
 	: mWindow(sf::VideoMode(640, 480), "SFML Application")
-	, mPlayer()
+	, mWorld(mWindow)
 	, mFont()
 	, mStatisticsText()
 	, mStatisticsUpdateTime()
@@ -17,12 +17,7 @@ Game::Game()
 	, mIsMovingRight(false)
 	, mIsMovingLeft(false)
 {
-	if (!mTexture.loadFromFile("Media/Textures/Eagle.png"))
-	{
-		std::cout << "Error loading texture file" << std::endl;
-	}
-	mPlayer.setTexture(mTexture);
-	mPlayer.setPosition(100.0f, 100.0f);
+	
 
 	mFont.loadFromFile("Media/Sansation.ttf");
 	mStatisticsText.setFont(mFont);
@@ -55,18 +50,17 @@ void Game::processEvents()
 	sf::Event event;
 	while (mWindow.pollEvent(event))
 	{
-		/*if (event.type == sf::Event::Closed)
-			mWindow.close();*/
-		switch (event.type) {
-		case sf::Event::KeyPressed:
-			handlePlayerInput(event.key.code, true);
-			break;
-		case sf::Event::KeyReleased:
-			handlePlayerInput(event.key.code, false);
-			break;
-		case sf::Event::Closed:
-			mWindow.close();
-			break;
+		switch (event.type) 
+		{
+			case sf::Event::KeyPressed:
+				handlePlayerInput(event.key.code, true);
+				break;
+			case sf::Event::KeyReleased:
+				handlePlayerInput(event.key.code, false);
+				break;
+			case sf::Event::Closed:
+				mWindow.close();
+				break;
 		}
 	}
 }
@@ -84,12 +78,16 @@ void Game::update(sf::Time elapsedTime)
 		movement.x += PlayerSpeed;
 
 	mPlayer.move(movement * elapsedTime.asSeconds());
+	mWorld.update(elapsedTime);
 }
 
 void Game::render()
 {
 	mWindow.clear();
-	mWindow.draw(mPlayer);
+	mWorld.draw();
+
+	mWindow.setView(mWindow.getDefaultView());
+
 	mWindow.draw(mStatisticsText);
 	mWindow.display();
 }

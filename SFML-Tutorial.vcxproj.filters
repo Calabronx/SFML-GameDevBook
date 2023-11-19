@@ -51,6 +51,12 @@
     <ClInclude Include="source\util\scene_node.hpp">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClInclude>
+    <ClInclude Include="source\util\sprite_node.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
+    <ClInclude Include="source\util\world.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\core\game.cpp">
@@ -69,6 +75,12 @@
       <Filter>Source Files\AircraftGame\model</Filter>
     </ClCompile>
     <ClCompile Include="source\util\scene_node.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClCompile>
+    <ClCompile Include="source\util\sprite_node.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClCompile>
+    <ClCompile Include="source\util\world.cpp">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClCompile>
   </ItemGroup>
