@@ -6,6 +6,7 @@
 
 #include "../util/StringHelpers.hpp"
 #include "../util/world.hpp"
+#include "../model/player.h"
 
 class Game : private sf::NonCopyable
 {
@@ -28,7 +29,7 @@ private:
 	World								mWorld;
 
 	sf::Texture							mTexture;
-	sf::Sprite							mPlayer;
+	Player								mPlayer;
 	sf::Font							mFont;
 	sf::Text							mStatisticsText;
 	sf::Time							mStatisticsUpdateTime;
@@ -38,6 +39,7 @@ private:
 	bool								mIsMovingDown;
 	bool								mIsMovingRight;
 	bool							    mIsMovingLeft;
+	bool								mIsPaused;
 
 };
 #endif // !GAME_H

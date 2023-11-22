@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "../input/command_queue.h"
+
 const float Game::PlayerSpeed = 100.0f;
 const sf::Time Game::TimePerFrame = sf::seconds(1.0f / 60.0f);
 
@@ -25,6 +27,24 @@ Game::Game()
 	mStatisticsText.setCharacterSize(10);
 }
 
+void Game::processEvents()
+{
+	CommandQueue& commands = mWorld.getCommandQueue();
+
+	sf::Event event;
+	while (mWindow.pollEvent(event))
+	{
+		mPlayer.handleEvent(event, commands);
+		
+		if (event.type == sf::Event::GainedFocus)
+			mIsPaused = false;
+		else if (event.type == sf::Event::LostFocus)
+			mIsPaused = true;
+	}
+
+	mPlayer.handleRealTimeInput(commands);
+}
+
 void Game::run()
 {
 	sf::Clock clock;
@@ -37,7 +57,8 @@ void Game::run()
 		{
 			timeSinceLastUpdate -= TimePerFrame;
 			processEvents();
-			update(TimePerFrame);
+			if (!mIsPaused)
+				update(TimePerFrame);
 		}
 
 		updateStatistics(elapsedTime);
@@ -45,39 +66,20 @@ void Game::run()
 	}
 }
 
-void Game::processEvents()
-{
-	sf::Event event;
-	while (mWindow.pollEvent(event))
-	{
-		switch (event.type) 
-		{
-			case sf::Event::KeyPressed:
-				handlePlayerInput(event.key.code, true);
-				break;
-			case sf::Event::KeyReleased:
-				handlePlayerInput(event.key.code, false);
-				break;
-			case sf::Event::Closed:
-				mWindow.close();
-				break;
-		}
-	}
-}
-
 void Game::update(sf::Time elapsedTime)
 {
 	sf::Vector2f movement(0.f, 0.f);
-	if (mIsMovingUp)
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) 
 		movement.y -= PlayerSpeed;
-	if (mIsMovingDown)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		movement.y += PlayerSpeed;
-	if (mIsMovingLeft)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		movement.x -= PlayerSpeed;
-	if (mIsMovingRight)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		movement.x += PlayerSpeed;
 
-	mPlayer.move(movement * elapsedTime.asSeconds());
+	//mPlayer.move(movement * elapsedTime.asSeconds());
 	mWorld.update(elapsedTime);
 }
 
@@ -118,4 +120,6 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
 		mIsMovingLeft = isPressed;
 	else if (key == sf::Keyboard::D)
 		mIsMovingRight = isPressed;
+	else if (key == sf::Keyboard::Escape)
+		mWindow.close();
 }

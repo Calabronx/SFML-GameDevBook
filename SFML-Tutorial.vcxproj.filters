@@ -31,6 +31,9 @@
     <Filter Include="Source Files\AircraftGame\model">
       <UniqueIdentifier>{fbdae484-03ee-4806-9b46-9e8d332548a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\AircraftGame\input">
+      <UniqueIdentifier>{314383c6-2062-4f63-90fb-82c54ef48f6c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\core\game.hpp">
@@ -57,6 +60,18 @@
     <ClInclude Include="source\util\world.hpp">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClInclude>
+    <ClInclude Include="category.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
+    <ClInclude Include="source\model\player.h">
+      <Filter>Source Files\AircraftGame\model</Filter>
+    </ClInclude>
+    <ClInclude Include="source\input\Command.hpp">
+      <Filter>Source Files\AircraftGame\input</Filter>
+    </ClInclude>
+    <ClInclude Include="source\input\command_queue.h">
+      <Filter>Source Files\AircraftGame\input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\core\game.cpp">
@@ -82,6 +97,15 @@
     </ClCompile>
     <ClCompile Include="source\util\world.cpp">
       <Filter>Source Files\AircraftGame\util</Filter>
+    </ClCompile>
+    <ClCompile Include="source\model\player.cpp">
+      <Filter>Source Files\AircraftGame\model</Filter>
+    </ClCompile>
+    <ClCompile Include="source\input\command.cpp">
+      <Filter>Source Files\AircraftGame\input</Filter>
+    </ClCompile>
+    <ClCompile Include="source\input\command_queue.cpp">
+      <Filter>Source Files\AircraftGame\input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

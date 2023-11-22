@@ -31,6 +31,11 @@ void World::update(sf::Time dt)
 		mPlayerAircraft->setVelocity(velocity);
 	}
 
+	// Forward commands to the scene graph
+	while (!mCommandQueue.isEmpty())
+		mSceneGraph.onCommand(mCommandQueue.pop(), dt);
+
+	// Regular update step
 	mSceneGraph.update(dt);
 }
 
@@ -38,6 +43,11 @@ void World::draw()
 {
 	mWindow.setView(mWorldView);
 	mWindow.draw(mSceneGraph);
+}
+
+CommandQueue& World::getCommandQueue()
+{
+	return mCommandQueue;
 }
 
 void World::loadTextures()

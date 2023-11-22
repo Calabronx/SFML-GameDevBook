@@ -9,6 +9,7 @@
 #include "scene_node.hpp"
 #include "sprite_node.hpp"
 #include "../model/aircraft.hpp"
+#include "../input/command_queue.h"
 
 #include <array>
 
@@ -21,6 +22,7 @@ public:
 	explicit								World(sf::RenderWindow& window);
 	void								update(sf::Time dt);
 	void								draw();
+	CommandQueue& getCommandQueue();
 
 private:
 	void								loadTextures();
@@ -46,6 +48,7 @@ private:
 	sf::Vector2f						mSpawnPosition;
 	float								mScrollSpeed;
 	Aircraft*							mPlayerAircraft;
+	CommandQueue						mCommandQueue;
 
 };
 

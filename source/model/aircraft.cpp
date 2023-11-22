@@ -1,5 +1,7 @@
 #include "aircraft.hpp"
 
+#include "../util/category.hpp"
+
 
 Textures::ID toTextureID(Aircraft::Type type) {
 	switch (type)
@@ -17,6 +19,17 @@ Aircraft::Aircraft(Type type, const TextureHolder& textures)
 {
 	sf::FloatRect bounds = mSprite.getLocalBounds();
 	mSprite.setOrigin(bounds.width / 2.0f, bounds.height / 2.0f);
+}
+
+unsigned int Aircraft::getCategory() const
+{
+	switch (mType)
+	{
+		case Eagle:
+			return Category::PlayerAircraft;
+		default:
+			return Category::EnemyAircraft;
+	}
 }
 
 void Aircraft::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const

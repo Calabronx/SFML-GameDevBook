@@ -1,6 +1,9 @@
 #include "scene_node.hpp"
 #include <cassert>
 
+#include "../util/category.hpp"
+#include "../input/Command.hpp"
+
 SceneNode::SceneNode()
 	: mChildren()
 	, mParent(nullptr)
@@ -65,6 +68,20 @@ void SceneNode::drawChildren(sf::RenderTarget& target, sf::RenderStates states) 
 sf::Vector2f SceneNode::getWorldPosition() const
 {
 	return getWorldTransform() * sf::Vector2f();
+}
+
+void SceneNode::onCommand(const Command& command, sf::Time dt)
+{
+	if (command.category & getCategory())
+		command.action(*this, dt);
+
+	for (Ptr& child : mChildren)
+		child->onCommand(command, dt);
+}
+
+unsigned int SceneNode::getCategory() const
+{
+	return Category::Scene;
 }
 
 sf::Transform SceneNode::getWorldTransform() const
