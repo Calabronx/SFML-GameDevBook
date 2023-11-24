@@ -23,6 +23,7 @@ public:
 	void					handleRealTimeInput(CommandQueue& commands);
 
 	void					assignKey(Action action, sf::Keyboard::Key key);
+	void					initializeActions();
 	sf::Keyboard::Key	getAssignedKey(Action action) const;
 
 private:

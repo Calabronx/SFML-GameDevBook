@@ -14,10 +14,6 @@ Game::Game()
 	, mStatisticsText()
 	, mStatisticsUpdateTime()
 	, mStatisticsNumFrames(0)
-	, mIsMovingUp(false)
-	, mIsMovingDown(false)
-	, mIsMovingRight(false)
-	, mIsMovingLeft(false)
 {
 	
 
@@ -36,10 +32,10 @@ void Game::processEvents()
 	{
 		mPlayer.handleEvent(event, commands);
 		
-		/*if (event.type == sf::Event::GainedFocus)
+		if (event.type == sf::Event::GainedFocus)
 			mIsPaused = false;
 		else if (event.type == sf::Event::LostFocus)
-			mIsPaused = true;*/
+			mIsPaused = true;
 		if (event.type == sf::Event::Closed)
 			mWindow.close();
 	}
