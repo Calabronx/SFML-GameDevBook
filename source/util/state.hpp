@@ -4,21 +4,31 @@
 
 #include<SFML/Graphics.hpp>
 
-#include "state_stack.hpp"
-#include "source/util/resource_holder.hpp"
-#include "source/model/player.h"
+//#include "state_stack.hpp"
+#include "StateIdentifiers.hpp"
+#include "resource_holder.hpp"
+#include "../model/player.h"
+
+#include <memory>
+
+
+class StateStack;
 
 class State
 {
 public:
 	typedef std::unique_ptr<State> Ptr;
-	struct Context {
+
+	struct Context 
+	{
 		Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts, Player& player);
 
 		sf::RenderWindow* window;
 		TextureHolder* textures;
 		FontHolder* fonts;
 		Player* player;
+
+		Context();
 	};
 
 public:

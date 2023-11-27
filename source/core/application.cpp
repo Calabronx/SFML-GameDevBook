@@ -1,8 +1,10 @@
 #include "application.hpp"
-#include "title_state.hpp"
-#include "menu_state.h"
-#include "game_state.hpp"
-#include "pause_state.hpp"
+
+#include "../util/title_state.hpp"
+#include "../util/game_state.hpp"
+#include "../util/menu_state.h"
+#include "../util/pause_state.hpp"
+#include "../util/state.hpp"
 
 Application::Application()
 	:mWindow(sf::VideoMode(640, 480), "States", sf::Style::Close)

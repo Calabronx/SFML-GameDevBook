@@ -2,12 +2,11 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HH
 
-#include<SFML/Graphics.hpp>
-#include "source/util/resource_holder.hpp"
-#include "source/model/player.h"
-#include "state_stack.hpp"
-#include "StateIdentifiers.hpp"
+#include <SFML/Graphics.hpp>
 
+#include "../util/resource_holder.hpp"
+#include "../model/player.h"
+#include "../util/state_stack.hpp"
 
 class Application
 {
