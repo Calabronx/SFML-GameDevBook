@@ -19,7 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="application.hpp" />
     <ClInclude Include="category.hpp" />
+    <ClInclude Include="game_state.hpp" />
+    <ClInclude Include="menu_state.h" />
+    <ClInclude Include="pause_state.hpp" />
     <ClInclude Include="source\core\game.hpp" />
     <ClInclude Include="source\input\Command.hpp" />
     <ClInclude Include="source\input\command_queue.h" />
@@ -31,8 +35,16 @@
     <ClInclude Include="source\util\StringHelpers.hpp" />
     <ClInclude Include="source\util\resource_holder.hpp" />
     <ClInclude Include="source\util\world.hpp" />
+    <ClInclude Include="state.hpp" />
+    <ClInclude Include="StateIdentifiers.hpp" />
+    <ClInclude Include="state_stack.hpp" />
+    <ClInclude Include="title_state.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="application.cpp" />
+    <ClCompile Include="game_state.cpp" />
+    <ClCompile Include="menu_state.cpp" />
+    <ClCompile Include="pause_state.cpp" />
     <ClCompile Include="source\core\game.cpp" />
     <ClCompile Include="source\input\command.cpp" />
     <ClCompile Include="source\input\command_queue.cpp" />
@@ -44,6 +56,9 @@
     <ClCompile Include="source\util\scene_node.cpp" />
     <ClCompile Include="source\util\sprite_node.cpp" />
     <ClCompile Include="source\util\world.cpp" />
+    <ClCompile Include="state.cpp" />
+    <ClCompile Include="state_stack.cpp" />
+    <ClCompile Include="title_state.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="source\util\StringHelpers.inl" />

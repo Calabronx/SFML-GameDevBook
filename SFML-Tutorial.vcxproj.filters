@@ -63,14 +63,38 @@
     <ClInclude Include="category.hpp">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClInclude>
-    <ClInclude Include="source\model\player.h">
-      <Filter>Source Files\AircraftGame\model</Filter>
-    </ClInclude>
     <ClInclude Include="source\input\Command.hpp">
       <Filter>Source Files\AircraftGame\input</Filter>
     </ClInclude>
     <ClInclude Include="source\input\command_queue.h">
       <Filter>Source Files\AircraftGame\input</Filter>
+    </ClInclude>
+    <ClInclude Include="source\model\player.h">
+      <Filter>Source Files\AircraftGame\input</Filter>
+    </ClInclude>
+    <ClInclude Include="state_stack.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
+    <ClInclude Include="state.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
+    <ClInclude Include="application.hpp">
+      <Filter>Source Files\AircraftGame\core</Filter>
+    </ClInclude>
+    <ClInclude Include="StateIdentifiers.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
+    <ClInclude Include="game_state.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
+    <ClInclude Include="menu_state.h">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
+    <ClInclude Include="pause_state.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
+    <ClInclude Include="title_state.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -98,14 +122,35 @@
     <ClCompile Include="source\util\world.cpp">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClCompile>
-    <ClCompile Include="source\model\player.cpp">
-      <Filter>Source Files\AircraftGame\model</Filter>
-    </ClCompile>
     <ClCompile Include="source\input\command.cpp">
       <Filter>Source Files\AircraftGame\input</Filter>
     </ClCompile>
     <ClCompile Include="source\input\command_queue.cpp">
       <Filter>Source Files\AircraftGame\input</Filter>
+    </ClCompile>
+    <ClCompile Include="source\model\player.cpp">
+      <Filter>Source Files\AircraftGame\input</Filter>
+    </ClCompile>
+    <ClCompile Include="state_stack.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClCompile>
+    <ClCompile Include="state.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClCompile>
+    <ClCompile Include="application.cpp">
+      <Filter>Source Files\AircraftGame\core</Filter>
+    </ClCompile>
+    <ClCompile Include="game_state.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClCompile>
+    <ClCompile Include="menu_state.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClCompile>
+    <ClCompile Include="pause_state.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClCompile>
+    <ClCompile Include="title_state.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

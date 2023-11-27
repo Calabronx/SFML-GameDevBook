@@ -13,6 +13,7 @@
 namespace sf
 {
 	class Texture;
+	class Font;
 }
 
 namespace Textures
@@ -21,7 +22,16 @@ namespace Textures
 	{
 		Eagle,
 		Raptor,
-		Desert
+		Desert,
+		TitleScreen,
+	};
+}
+
+namespace Fonts
+{
+	enum ID
+	{
+		Main,
 	};
 }
 
@@ -43,6 +53,7 @@ private:
 	std::map<Identifier, std::unique_ptr<Resource>> mResourceMap;
 };
 typedef ResourceHolder<sf::Texture, Textures::ID> TextureHolder;
+typedef ResourceHolder<sf::Font, Fonts::ID>				FontHolder;
 
 #endif 
 
