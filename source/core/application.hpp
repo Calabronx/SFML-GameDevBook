@@ -1,11 +1,12 @@
 #pragma once
 #ifndef APPLICATION_HPP
-#define APPLICATION_HH
+#define APPLICATION_HPP
 
 #include <SFML/Graphics.hpp>
 
-#include "../util/resource_holder.hpp"
 #include "../model/player.h"
+#include "../util/resource_holder.hpp"
+//#include "../util/resource_holder.inl"
 #include "../util/state_stack.hpp"
 
 class Application

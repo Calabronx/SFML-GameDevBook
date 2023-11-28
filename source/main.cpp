@@ -1,12 +1,12 @@
 #include <SFML/Graphics.hpp>
-#include "core/game.hpp"
+#include "core/application.hpp"
 
 #include <iostream>
 
 int main()
 {
     try {
-        Game game;
+        Application game;
         game.run();
 
     }

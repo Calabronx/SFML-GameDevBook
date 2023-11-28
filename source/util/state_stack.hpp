@@ -9,8 +9,6 @@
 #include <map>
 #include <functional>
 
-
-
 class StateStack : private sf::NonCopyable
 {
 	public:
@@ -45,6 +43,8 @@ class StateStack : private sf::NonCopyable
 
 		struct PendingChange
 		{
+			explicit			PendingChange(Action action, States::ID stateID = States::None);
+
 			Action				action;
 			States::ID			stateID;
 		};

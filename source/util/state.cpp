@@ -5,6 +5,10 @@ State::State(StateStack& stack, Context context)
 {
 }
 
+State::State()
+{
+}
+
 State::~State()
 {
 }

@@ -33,6 +33,7 @@ public:
 
 public:
 	State(StateStack& stack, Context context);
+	State();
 	virtual ~State();
 
 	virtual void draw() = 0;
