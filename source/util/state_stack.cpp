@@ -1,6 +1,7 @@
 #include "state_stack.hpp"
 
 #include<cassert>
+#include <iostream>
 
 StateStack::StateStack(State::Context context)
 	: mStack()
@@ -41,7 +42,7 @@ void StateStack::handleEvent(const sf::Event& event)
 
 void StateStack::pushState(States::ID stateID)
 {
-	mPendingList.push_back(PendingChange(Push));
+	mPendingList.push_back(PendingChange(Push, stateID));
 }
 
 void StateStack::popState()
