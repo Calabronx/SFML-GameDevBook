@@ -1,4 +1,5 @@
 #include "menu_state.h"
+#include "utility.hpp"
 
 MenuState::MenuState(StateStack& stack, Context context)
 	: State(stack, context)
@@ -10,9 +11,16 @@ MenuState::MenuState(StateStack& stack, Context context)
 	sf::Text playOption;
 	playOption.setFont(font);
 	playOption.setString("Play");
-	//centerOrigin(playOption);
+	centerOrigin(playOption);
 	playOption.setPosition(context.window->getView().getSize() / 2.f);
 	mOptions.push_back(playOption);
+
+	sf::Text exitOption;
+	exitOption.setFont(font);
+	exitOption.setString("Exit");
+	centerOrigin(exitOption);
+	exitOption.setPosition(playOption.getPosition() + sf::Vector2f(0.0f, 30.0f));
+	mOptions.push_back(exitOption);
 
 	updateOptionText();
 }
@@ -35,6 +43,9 @@ bool MenuState::update(sf::Time dt)
 
 bool MenuState::handleEvent(const sf::Event& event)
 {
+	if (event.type != sf::Event::KeyPressed)
+		return false;
+
 	if (event.key.code == sf::Keyboard::Return)
 	{
 		if (mOptionIndex == Play)

@@ -30,7 +30,9 @@
     <ClInclude Include="source\model\entity.hpp" />
     <ClInclude Include="source\model\player.h" />
     <ClInclude Include="source\util\game_state.hpp" />
+    <ClInclude Include="source\util\loading_state.h" />
     <ClInclude Include="source\util\menu_state.h" />
+    <ClInclude Include="source\util\parallel_task.h" />
     <ClInclude Include="source\util\pause_state.hpp" />
     <ClInclude Include="source\util\scene_node.hpp" />
     <ClInclude Include="source\util\sprite_node.hpp" />
@@ -40,6 +42,7 @@
     <ClInclude Include="source\util\StringHelpers.hpp" />
     <ClInclude Include="source\util\resource_holder.hpp" />
     <ClInclude Include="source\util\title_state.hpp" />
+    <ClInclude Include="source\util\utility.hpp" />
     <ClInclude Include="source\util\world.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -54,7 +57,9 @@
     <ClCompile Include="source\model\entity.cpp" />
     <ClCompile Include="source\model\player.cpp" />
     <ClCompile Include="source\util\game_state.cpp" />
+    <ClCompile Include="source\util\loading_state.cpp" />
     <ClCompile Include="source\util\menu_state.cpp" />
+    <ClCompile Include="source\util\parallel_task.cpp" />
     <ClCompile Include="source\util\pause_state.cpp" />
     <ClCompile Include="source\util\resource_holder.inl" />
     <ClCompile Include="source\util\scene_node.cpp" />
@@ -62,6 +67,7 @@
     <ClCompile Include="source\util\state.cpp" />
     <ClCompile Include="source\util\state_stack.cpp" />
     <ClCompile Include="source\util\title_state.cpp" />
+    <ClCompile Include="source\util\utility.inl" />
     <ClCompile Include="source\util\world.cpp" />
   </ItemGroup>
   <ItemGroup>

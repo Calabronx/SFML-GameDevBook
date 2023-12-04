@@ -102,6 +102,15 @@
     <ClInclude Include="source\core\application.hpp">
       <Filter>Source Files\AircraftGame\core</Filter>
     </ClInclude>
+    <ClInclude Include="source\util\utility.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
+    <ClInclude Include="source\util\loading_state.h">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
+    <ClInclude Include="source\util\parallel_task.h">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\core\game.cpp">
@@ -163,6 +172,15 @@
     </ClCompile>
     <ClCompile Include="source\core\application.cpp">
       <Filter>Source Files\AircraftGame\core</Filter>
+    </ClCompile>
+    <ClCompile Include="source\util\utility.inl">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClCompile>
+    <ClCompile Include="source\util\loading_state.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClCompile>
+    <ClCompile Include="source\util\parallel_task.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
