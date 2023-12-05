@@ -43,7 +43,7 @@ void Player::handleEvent(const sf::Event& event, CommandQueue& commands)
 		output.category = Category::PlayerAircraft;
 		output.action = [](SceneNode& s, sf::Time)
 		{
-			std::cout << s.getPosition().x << "," << s.getPosition().y << "\n";
+			std::cout << "X: " << s.getPosition().x << ", Y: " << s.getPosition().y << "\n";
 		};
 		commands.push(output);
 	}

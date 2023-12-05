@@ -44,6 +44,8 @@
     <ClInclude Include="source\util\title_state.hpp" />
     <ClInclude Include="source\util\utility.hpp" />
     <ClInclude Include="source\util\world.hpp" />
+    <ClInclude Include="source\view\component.hpp" />
+    <ClInclude Include="source\view\container.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ball.cpp" />
@@ -69,6 +71,8 @@
     <ClCompile Include="source\util\title_state.cpp" />
     <ClCompile Include="source\util\utility.inl" />
     <ClCompile Include="source\util\world.cpp" />
+    <ClCompile Include="source\view\component.cpp" />
+    <ClCompile Include="source\view\container.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="source\util\StringHelpers.inl" />

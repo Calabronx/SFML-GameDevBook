@@ -34,6 +34,9 @@
     <Filter Include="Source Files\AircraftGame\input">
       <UniqueIdentifier>{314383c6-2062-4f63-90fb-82c54ef48f6c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\AircraftGame\view">
+      <UniqueIdentifier>{dc2ed0ba-601e-404a-8aac-067f61f9be94}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\core\game.hpp">
@@ -111,6 +114,12 @@
     <ClInclude Include="source\util\parallel_task.h">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClInclude>
+    <ClInclude Include="source\view\component.hpp">
+      <Filter>Source Files\AircraftGame\view</Filter>
+    </ClInclude>
+    <ClInclude Include="source\view\container.hpp">
+      <Filter>Source Files\AircraftGame\view</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\core\game.cpp">
@@ -181,6 +190,12 @@
     </ClCompile>
     <ClCompile Include="source\util\parallel_task.cpp">
       <Filter>Source Files\AircraftGame\util</Filter>
+    </ClCompile>
+    <ClCompile Include="source\view\container.cpp">
+      <Filter>Source Files\AircraftGame\view</Filter>
+    </ClCompile>
+    <ClCompile Include="source\view\component.cpp">
+      <Filter>Source Files\AircraftGame\view</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
