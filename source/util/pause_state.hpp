@@ -4,6 +4,7 @@
 
 #include<SFML/Graphics.hpp>
 #include "state.hpp"
+#include "../view/container.hpp"
 
 class PauseState : public State
 {
@@ -16,7 +17,7 @@ public:
 private:
 	sf::Sprite				mBackgroundSprite;
 	sf::Text				mPausedText;
-	sf::Text				mInstructionText;
+	GUI::Container		mGUIContainer;
 };
 
 #endif // !PAUSESTATE_HPP

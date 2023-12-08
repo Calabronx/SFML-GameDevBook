@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "state.hpp"
+#include "../view/container.hpp"
 
 class MenuState : public State
 {
@@ -27,9 +28,7 @@ private:
 
 private:
 	sf::Sprite						mBackgroundSprite;
-
-	std::vector<sf::Text> mOptions;
-	std::size_t						mOptionIndex;
+	GUI::Container			mGUIContainer;
 
 
 };

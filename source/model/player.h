@@ -13,7 +13,8 @@ public:
 		MoveLeft,
 		MoveRight,
 		MoveUp,
-		MoveDown
+		MoveDown,
+		ActionCount
 
 	};
 								Player();

@@ -35,6 +35,7 @@
     <ClInclude Include="source\util\parallel_task.h" />
     <ClInclude Include="source\util\pause_state.hpp" />
     <ClInclude Include="source\util\scene_node.hpp" />
+    <ClInclude Include="source\util\settings_state.hpp" />
     <ClInclude Include="source\util\sprite_node.hpp" />
     <ClInclude Include="source\util\state.hpp" />
     <ClInclude Include="source\util\StateIdentifiers.hpp" />
@@ -44,8 +45,10 @@
     <ClInclude Include="source\util\title_state.hpp" />
     <ClInclude Include="source\util\utility.hpp" />
     <ClInclude Include="source\util\world.hpp" />
+    <ClInclude Include="source\view\button.hpp" />
     <ClInclude Include="source\view\component.hpp" />
     <ClInclude Include="source\view\container.hpp" />
+    <ClInclude Include="source\view\label.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ball.cpp" />
@@ -65,14 +68,17 @@
     <ClCompile Include="source\util\pause_state.cpp" />
     <ClCompile Include="source\util\resource_holder.inl" />
     <ClCompile Include="source\util\scene_node.cpp" />
+    <ClCompile Include="source\util\settings_state.cpp" />
     <ClCompile Include="source\util\sprite_node.cpp" />
     <ClCompile Include="source\util\state.cpp" />
     <ClCompile Include="source\util\state_stack.cpp" />
     <ClCompile Include="source\util\title_state.cpp" />
     <ClCompile Include="source\util\utility.inl" />
     <ClCompile Include="source\util\world.cpp" />
+    <ClCompile Include="source\view\button.cpp" />
     <ClCompile Include="source\view\component.cpp" />
     <ClCompile Include="source\view\container.cpp" />
+    <ClCompile Include="source\view\label.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="source\util\StringHelpers.inl" />

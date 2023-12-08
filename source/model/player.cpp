@@ -83,7 +83,11 @@ void Player::initializeActions()
 
 sf::Keyboard::Key Player::getAssignedKey(Action action) const
 {
-	return sf::Keyboard::Key();
+	for (auto pair : mKeyBinding) {
+		if (pair.second == action)
+			return pair.first;
+	}
+	return sf::Keyboard::Unknown;
 }
 
 bool Player::isRealTimeAction(Action action)

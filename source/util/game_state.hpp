@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "world.hpp"
-#include "state_stack.hpp"
+#include "state.hpp"
 
 class GameState : public State
 {

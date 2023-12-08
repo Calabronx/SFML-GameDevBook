@@ -1,4 +1,5 @@
 #include "title_state.hpp"
+#include "utility.hpp"
 
 TitleState::TitleState(StateStack& stack, Context context)
 	:State(stack, context)
@@ -10,7 +11,7 @@ TitleState::TitleState(StateStack& stack, Context context)
 
 	mText.setFont(context.fonts->get(Fonts::Main));
 	mText.setString("Press any key to start");
-	//centerOrigin(mText);
+	centerOrigin(mText);
 	mText.setPosition(context.window->getView().getSize() / 2.0f);
 
 }

@@ -120,6 +120,15 @@
     <ClInclude Include="source\view\container.hpp">
       <Filter>Source Files\AircraftGame\view</Filter>
     </ClInclude>
+    <ClInclude Include="source\view\label.hpp">
+      <Filter>Source Files\AircraftGame\view</Filter>
+    </ClInclude>
+    <ClInclude Include="source\view\button.hpp">
+      <Filter>Source Files\AircraftGame\view</Filter>
+    </ClInclude>
+    <ClInclude Include="source\util\settings_state.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\core\game.cpp">
@@ -196,6 +205,15 @@
     </ClCompile>
     <ClCompile Include="source\view\component.cpp">
       <Filter>Source Files\AircraftGame\view</Filter>
+    </ClCompile>
+    <ClCompile Include="source\view\label.cpp">
+      <Filter>Source Files\AircraftGame\view</Filter>
+    </ClCompile>
+    <ClCompile Include="source\view\button.cpp">
+      <Filter>Source Files\AircraftGame\view</Filter>
+    </ClCompile>
+    <ClCompile Include="source\util\settings_state.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

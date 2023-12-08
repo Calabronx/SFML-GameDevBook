@@ -4,13 +4,11 @@
 
 #include<SFML/Graphics.hpp>
 
-//#include "state_stack.hpp"
 #include "StateIdentifiers.hpp"
 #include "resource_holder.hpp"
 #include "../model/player.h"
 
 #include <memory>
-
 
 class StateStack;
 

@@ -1,6 +1,8 @@
 #include "component.hpp"
 
 GUI::Component::Component()
+    : mIsSelected(false)
+    , mIsActive(false)
 {
 }
 
@@ -10,26 +12,30 @@ GUI::Component::~Component()
 
 bool GUI::Component::isSelected() const
 {
-    return false;
+    return mIsSelected;;
 }
 
 void GUI::Component::select()
 {
+    mIsSelected = true;
 }
 
 void GUI::Component::deselect()
 {
+    mIsSelected = false;
 }
 
 bool GUI::Component::isActive() const
 {
-    return false;
+    return mIsActive;
 }
 
 void GUI::Component::activate()
 {
+    mIsActive = true;
 }
 
 void GUI::Component::deactivate()
 {
+    mIsActive = false;
 }

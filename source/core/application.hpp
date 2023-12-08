@@ -6,7 +6,6 @@
 
 #include "../model/player.h"
 #include "../util/resource_holder.hpp"
-//#include "../util/resource_holder.inl"
 #include "../util/state_stack.hpp"
 
 class Application

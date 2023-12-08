@@ -1,16 +1,16 @@
 #include "application.hpp"
-
+#include"../util/state.hpp"
+#include "../util/StringHelpers.hpp"
 #include "../util/title_state.hpp"
 #include "../util/game_state.hpp"
 #include "../util/menu_state.h"
 #include "../util/pause_state.hpp"
-#include "../util/state.hpp"
-#include "../util/StringHelpers.hpp"
+#include "../util/settings_state.hpp"
 
 const sf::Time Application::TimePerFrame = sf::seconds(1.f / 60.f);
 
 Application::Application()
-	:mWindow(sf::VideoMode(640, 480), "States", sf::Style::Close)
+	:mWindow(sf::VideoMode(640, 480), "Game", sf::Style::Close)
 	, mTextures()
 	, mFonts()
 	, mPlayer()
@@ -23,6 +23,9 @@ Application::Application()
 
 	mFonts.load(Fonts::Main, "Media/Sansation.ttf");
 	mTextures.load(Textures::TitleScreen, "Media/Textures/TitleScreen.png");
+	mTextures.load(Textures::ButtonNormal, "Media/Textures/ButtonNormal.png");
+	mTextures.load(Textures::ButtonSelected, "Media/Textures/ButtonSelected.png");
+	mTextures.load(Textures::ButtonPressed, "Media/Textures/ButtonPressed.png");
 
 	mStatisticsText.setFont(mFonts.get(Fonts::Main));
 	mStatisticsText.setPosition(5.0f, 5.0f);
@@ -105,5 +108,6 @@ void Application::registerStates()
 	mStateStack.registerState<TitleState>(States::Title);
 	mStateStack.registerState<MenuState>(States::Menu);
 	mStateStack.registerState<GameState>(States::Game);
-	//mStateStack.registerState<PauseState>(States::Pause);
+	mStateStack.registerState<PauseState>(States::Pause);
+	mStateStack.registerState<SettingsState>(States::Settings);
 }
