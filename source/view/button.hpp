@@ -6,7 +6,6 @@
 #include<functional>
 
 #include "component.hpp"
-#include "../util/resource_holder.hpp"
 
 namespace GUI 
 {

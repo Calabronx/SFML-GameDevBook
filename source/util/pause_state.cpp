@@ -27,6 +27,7 @@ PauseState::PauseState(StateStack& stack, Context context)
 
 	auto backToMenuButton = std::make_shared<GUI::Button>(*context.fonts, *context.textures);
 	backToMenuButton->setPosition(0.5f * windowSize.x - 100, 0.4f * windowSize.y + 125);
+	backToMenuButton->setText("Exit");
 	backToMenuButton->setCallback([this]() {
 		requestStateClear();
 		requestStackPush(States::Menu);

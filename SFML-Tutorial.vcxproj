@@ -34,6 +34,7 @@
     <ClInclude Include="source\util\menu_state.h" />
     <ClInclude Include="source\util\parallel_task.h" />
     <ClInclude Include="source\util\pause_state.hpp" />
+    <ClInclude Include="source\util\ResourceIdentifiers.hpp" />
     <ClInclude Include="source\util\scene_node.hpp" />
     <ClInclude Include="source\util\settings_state.hpp" />
     <ClInclude Include="source\util\sprite_node.hpp" />

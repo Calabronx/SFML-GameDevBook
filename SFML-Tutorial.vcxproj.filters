@@ -129,6 +129,9 @@
     <ClInclude Include="source\util\settings_state.hpp">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClInclude>
+    <ClInclude Include="source\util\ResourceIdentifiers.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\core\game.cpp">

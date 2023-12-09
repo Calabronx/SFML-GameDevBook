@@ -2,6 +2,7 @@
 #include "../util/utility.hpp"
 
 
+
 GUI::Button::Button(const FontHolder& fonts, const TextureHolder& textures)
     :mCallback()
     , mNormalTexture(textures.get(Textures::ButtonNormal))

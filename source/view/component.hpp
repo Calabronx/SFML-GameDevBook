@@ -3,6 +3,8 @@
 #define COMPONENT_HPP
 
 #include<SFML/Graphics.hpp>
+#include "../util/resource_holder.hpp"
+#include "../util/resource_holder.inl"
 
 namespace sf
 {
