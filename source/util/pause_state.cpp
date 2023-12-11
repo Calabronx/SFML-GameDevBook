@@ -2,6 +2,7 @@
 
 #include"utility.hpp"
 #include "../view/button.hpp"
+#include "resource_holder.hpp"
 
 PauseState::PauseState(StateStack& stack, Context context)
 	: State(stack, context)

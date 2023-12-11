@@ -1,5 +1,6 @@
 #include "state.hpp"
 #include "state_stack.hpp"
+#include "resource_holder.hpp"
 
 State::State(StateStack& stack, Context context)
     :mStack(&stack)

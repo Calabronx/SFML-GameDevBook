@@ -5,7 +5,7 @@
 #include<SFML/Graphics.hpp>
 
 #include "StateIdentifiers.hpp"
-#include "resource_holder.hpp"
+#include "ResourceIdentifiers.hpp"
 #include "../model/player.h"
 
 #include <memory>

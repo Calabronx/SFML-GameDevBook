@@ -1,7 +1,7 @@
 #include "button.hpp"
 #include "../util/utility.hpp"
-
-
+#include "../util/resource_holder.hpp"
+#include "../util/resource_holder.inl"
 
 GUI::Button::Button(const FontHolder& fonts, const TextureHolder& textures)
     :mCallback()

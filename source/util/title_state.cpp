@@ -1,5 +1,6 @@
 #include "title_state.hpp"
 #include "utility.hpp"
+#include "resource_holder.hpp"
 
 TitleState::TitleState(StateStack& stack, Context context)
 	:State(stack, context)

@@ -1,5 +1,6 @@
 #include "settings_state.hpp"
 #include "StringHelpers.hpp"
+#include "resource_holder.hpp"
 
 
 SettingsState::SettingsState(StateStack& stack, Context context)

@@ -5,7 +5,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "resource_holder.hpp"
+#include "ResourceIdentifiers.hpp"
 #include "scene_node.hpp"
 #include "sprite_node.hpp"
 #include "../model/aircraft.hpp"
@@ -19,7 +19,7 @@ namespace sf {
 
 class World : private sf::NonCopyable {
 public:
-	explicit								World(sf::RenderWindow& window);
+	explicit								World(sf::RenderWindow& window, FontHolder& fonts);
 	void								update(sf::Time dt);
 	void								draw();
 	CommandQueue& getCommandQueue();
@@ -28,6 +28,9 @@ private:
 	void								loadTextures();
 	void								buildScene();
 	void								adaptPlayerPosition();
+	void								spawnEnemies();
+	sf::FloatRect				getViewBounds() const;
+	sf::FloatRect				getBattlefieldBounds() const;
 
 private:
 	enum Layer
@@ -37,10 +40,20 @@ private:
 		LayerCount
 	};
 
+	struct SpawnPoint
+	{
+		SpawnPoint(Aircraft::Type type, float x, float y);
+
+		Aircraft::Type type;
+		float		   x;
+		float		   y;
+	};
+
 private:
 	sf::RenderWindow&					mWindow;
 	sf::View							mWorldView;
 	TextureHolder						mTextures;
+	FontHolder&							mFonts;
 
 	SceneNode							mSceneGraph;
 	std::array<SceneNode*, LayerCount>	mSceneLayers;
@@ -50,6 +63,9 @@ private:
 	float								mScrollSpeed;
 	Aircraft*							mPlayerAircraft;
 	CommandQueue						mCommandQueue;
+
+	std::vector <SpawnPoint>		mEnemySpawnPoint;
+	std::vector <Aircraft*>			mActiveEnemies;
 
 };
 

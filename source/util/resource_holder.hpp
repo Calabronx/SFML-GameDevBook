@@ -9,35 +9,6 @@
 #include <string>
 #include <cassert>
 
-
-namespace sf
-{
-	class Texture;
-	class Font;
-}
-
-namespace Textures
-{
-	enum ID
-	{
-		Eagle,
-		Raptor,
-		Desert,
-		TitleScreen,
-		ButtonNormal,
-		ButtonSelected,
-		ButtonPressed
-	};
-}
-
-namespace Fonts
-{
-	enum ID
-	{
-		Main
-	};
-}
-
 template <typename Resource, typename Identifier>
 class ResourceHolder
 {
@@ -55,8 +26,7 @@ public:
 private:
 	std::map<Identifier, std::unique_ptr<Resource>> mResourceMap;
 };
-typedef ResourceHolder<sf::Texture, Textures::ID> TextureHolder;
-typedef ResourceHolder<sf::Font, Fonts::ID>				FontHolder;
+
 
 #endif 
 

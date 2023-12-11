@@ -1,8 +1,10 @@
 #include "world.hpp"
+#include "resource_holder.hpp"
 
-World::World(sf::RenderWindow& window)
+World::World(sf::RenderWindow& window, FontHolder& fonts)
 	: mWindow(window)
 	, mWorldView(window.getDefaultView())
+	, mFonts(fonts)
 	, mTextures()
 	, mSceneGraph()
 	, mSceneLayers()
@@ -84,18 +86,18 @@ void World::buildScene()
 	mSceneLayers[Background]->attachChild(std::move(backgroundSprite));
 
 	// add players aircraft
-	std::unique_ptr<Aircraft> leader(new Aircraft(Aircraft::Eagle, mTextures));
+	std::unique_ptr<Aircraft> leader(new Aircraft(Aircraft::Eagle, mTextures, mFonts));
 	mPlayerAircraft = leader.get();
 	mPlayerAircraft->setPosition(mSpawnPosition);
 	mPlayerAircraft->setVelocity(40.0f, mScrollSpeed);
 	mSceneLayers[Air]->attachChild(std::move(leader));
 
 	// add two escorting aircrafts, placed relatively to the main plane
-	std::unique_ptr<Aircraft> leftEscort(new Aircraft(Aircraft::Raptor, mTextures));
+	std::unique_ptr<Aircraft> leftEscort(new Aircraft(Aircraft::Raptor, mTextures, mFonts));
 	leftEscort->setPosition(-80.0f, 50.0f);
 	mPlayerAircraft->attachChild(std::move(leftEscort));
 
-	std::unique_ptr<Aircraft> rightEscort(new Aircraft(Aircraft::Raptor, mTextures));
+	std::unique_ptr<Aircraft> rightEscort(new Aircraft(Aircraft::Raptor, mTextures, mFonts));
 	rightEscort->setPosition(80.0f, 50.0f);
 	mPlayerAircraft->attachChild(std::move(rightEscort));
 }
@@ -112,4 +114,18 @@ void World::adaptPlayerPosition()
 	position.y = std::max(position.y, viewBounds.top + borderDistance);
 	position.y = std::min(position.y, viewBounds.top + viewBounds.height - borderDistance);
 	mPlayerAircraft->setPosition(position);
+}
+
+void World::spawnEnemies()
+{
+}
+
+sf::FloatRect World::getViewBounds() const
+{
+	return sf::FloatRect();
+}
+
+sf::FloatRect World::getBattlefieldBounds() const
+{
+	return sf::FloatRect();
 }

@@ -1,4 +1,5 @@
 #include "application.hpp"
+
 #include "../util/StringHelpers.hpp"
 #include "../util/title_state.hpp"
 #include "../util/game_state.hpp"

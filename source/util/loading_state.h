@@ -5,6 +5,8 @@
 #include<SFML/Graphics/RectangleShape.hpp>
 #include<SFML/Graphics/Text.hpp>
 
+#include"resource_holder.hpp"
+#include"ResourceIdentifiers.hpp"
 #include "state.hpp"
 #include "parallel_task.h"
 

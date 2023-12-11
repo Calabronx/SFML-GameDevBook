@@ -1,6 +1,7 @@
 #include "loading_state.h"
 #include "utility.hpp"
 
+
 LoadingState::LoadingState(StateStack& stack, Context context)
 {
     sf::RenderWindow& window = *getContext().window;

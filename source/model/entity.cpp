@@ -1,5 +1,31 @@
 #include "entity.hpp"
 
+Entity::Entity(int hitpoints)
+{
+}
+
+void Entity::repair(int points)
+{
+}
+
+void Entity::damage(int points)
+{
+}
+
+void Entity::destroy()
+{
+}
+
+int Entity::getHitpoints() const
+{
+	return 0;
+}
+
+bool Entity::isDestroyed() const
+{
+	return false;
+}
+
 void Entity::setVelocity(sf::Vector2f velocity)
 {
 	mVelocity = velocity;

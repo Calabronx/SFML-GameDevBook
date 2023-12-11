@@ -15,8 +15,9 @@ namespace sf {
 template<typename T>
 std::string toString(const T& value);
 
-void centerOrigin(sf::Sprite& sprite);
-void centerOrigin(sf::Text& text);
+void	centerOrigin(sf::Sprite& sprite);
+void	centerOrigin(sf::Text& text);
+float	toRadian(float degree);
 
 //#include"utility.inl"
 #endif // !UTILITY_HPP

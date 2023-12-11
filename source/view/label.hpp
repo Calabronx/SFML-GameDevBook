@@ -3,6 +3,7 @@
 #define LABEL_HPP
 
 #include "component.hpp"
+#include "../util/ResourceIdentifiers.hpp"
 
 namespace GUI
 {

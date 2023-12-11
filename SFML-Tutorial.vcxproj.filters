@@ -39,9 +39,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\core\game.hpp">
-      <Filter>Source Files\AircraftGame\core</Filter>
-    </ClInclude>
     <ClInclude Include="source\util\resource_holder.hpp">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClInclude>
@@ -132,11 +129,14 @@
     <ClInclude Include="source\util\ResourceIdentifiers.hpp">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClInclude>
+    <ClInclude Include="source\util\text_node.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
+    <ClInclude Include="source\util\DataTables.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\core\game.cpp">
-      <Filter>Source Files\AircraftGame\core</Filter>
-    </ClCompile>
     <ClCompile Include="source\util\resource_holder.inl">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClCompile>
@@ -216,6 +216,12 @@
       <Filter>Source Files\AircraftGame\view</Filter>
     </ClCompile>
     <ClCompile Include="source\util\settings_state.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClCompile>
+    <ClCompile Include="source\util\text_node.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClCompile>
+    <ClCompile Include="source\util\DataTables.cpp">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClCompile>
   </ItemGroup>

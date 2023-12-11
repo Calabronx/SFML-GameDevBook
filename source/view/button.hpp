@@ -6,6 +6,7 @@
 #include<functional>
 
 #include "component.hpp"
+#include"../util/ResourceIdentifiers.hpp"
 
 namespace GUI 
 {

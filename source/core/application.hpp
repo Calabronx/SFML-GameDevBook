@@ -4,6 +4,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "../util/resource_holder.hpp"
+#include "../util/ResourceIdentifiers.hpp"
 #include "../model/player.h"
 #include "../util/state_stack.hpp"
 

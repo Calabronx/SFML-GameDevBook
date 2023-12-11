@@ -1,6 +1,7 @@
 #include "menu_state.h"
 #include "utility.hpp"
 #include "../view/button.hpp"
+#include "resource_holder.hpp"
 
 MenuState::MenuState(StateStack& stack, Context context)
 	: State(stack, context)
