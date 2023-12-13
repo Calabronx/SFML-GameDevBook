@@ -22,7 +22,9 @@ namespace Textures
 		TitleScreen,
 		ButtonNormal,
 		ButtonSelected,
-		ButtonPressed
+		ButtonPressed,
+		Bullet,
+		Missile
 	};
 }
 

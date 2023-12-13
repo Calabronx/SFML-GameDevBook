@@ -28,7 +28,23 @@ float Aircraft::getMaxSpeed() const
 }
 
 Aircraft::Aircraft(Type type, const TextureHolder& textures, const FontHolder& fonts)
-	:Entity(Table[type].hitpoints), mType(type), mSprite(textures.get(toTextureID(type))), mHealthDisplay(nullptr)
+	:Entity(Table[type].hitpoints)
+	, mType(type)
+	, mSprite(textures.get(Table[type].texture))
+	, mFireCommand()
+	, mMissileCommand()
+	, mFireCountdown(sf::Time::Zero)
+	, mIsFiring(false)
+	, mIsLaunchingMissile(false)
+	//, mIsMarkedForRemoval(false)
+	, mFireRateLevel(1)
+	/*, mSpreadLevel(1)
+	, mMissileAmmo(2)
+	, mDropPickupCommand()*/
+	, mTravelledDistance(0.f)
+	, mDirectionIndex(0)
+	, mHealthDisplay(nullptr)
+	/*, mMissileDisplay(nullptr)*/
 {
 	sf::FloatRect bounds = mSprite.getLocalBounds();
 	mSprite.setOrigin(bounds.width / 2.0f, bounds.height / 2.0f);
@@ -37,6 +53,26 @@ Aircraft::Aircraft(Type type, const TextureHolder& textures, const FontHolder& f
 	mHealthDisplay = healthDisplay.get();
 	attachChild(std::move(healthDisplay));
 
+	mFireCommand.category = Category::SceneAirLayer;
+	mFireCommand.action = [this, &textures](SceneNode& node, sf::Time)
+	{
+		createBullets(node, textures);
+	};
+
+	mMissileCommand.category = Category::SceneAirLayer;
+	mMissileCommand.action = [this, &textures](SceneNode& node, sf::Time)
+	{
+		createProjectile(node, Projectile::Missile, 0.f, 0.5f, textures);
+	};
+
+}
+
+void Aircraft::fire()
+{
+}
+
+void Aircraft::launchMissile()
+{
 }
 
 
@@ -79,4 +115,37 @@ void Aircraft::updateMovementPattern(sf::Time dt)
 		setVelocity(vx, vy);
 		mTravelledDistance += getMaxSpeed() * dt.asSeconds();
 	}
+}
+
+void Aircraft::checkProjectileLaunch(sf::Time dt, CommandQueue& commands)
+{
+	// Check for automatic gunfire, allow only in intervals
+	if (mIsFiring && mFireCountdown <= sf::Time::Zero)
+	{
+		// Interval expired: we can fire a new bullet
+		commands.push(mFireCommand);
+		mFireCountdown += Table[mType].fireInterval / (mFireRateLevel + 1.f);
+		mIsFiring = false;
+	}
+	else if (mFireCountdown > sf::Time::Zero)
+	{
+		// interval not expired: Decrease it further
+		mFireCountdown -= dt;
+		mIsFiring = false;
+	}
+
+	// Check for missile launch
+	if (mIsLaunchingMissile)
+	{
+		commands.push(mMissileCommand);
+		mIsLaunchingMissile = false;
+	}
+}
+
+void Aircraft::createBullets(SceneNode& node, const TextureHolder& textures) const
+{
+}
+
+void Aircraft::createProjectile(SceneNode& node, Projectile::Type type, float xOffset, float yOffset, const TextureHolder& textures) const
+{
 }

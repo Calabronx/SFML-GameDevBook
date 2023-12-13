@@ -22,13 +22,13 @@
     <ClInclude Include="ball.h" />
     <ClInclude Include="category.hpp" />
     <ClInclude Include="program.h" />
-    <ClInclude Include="projectile.hpp" />
     <ClInclude Include="source\core\application.hpp" />
     <ClInclude Include="source\input\Command.hpp" />
     <ClInclude Include="source\input\command_queue.h" />
     <ClInclude Include="source\model\aircraft.hpp" />
     <ClInclude Include="source\model\entity.hpp" />
     <ClInclude Include="source\model\player.h" />
+    <ClInclude Include="source\model\projectile.hpp" />
     <ClInclude Include="source\util\DataTables.hpp" />
     <ClInclude Include="source\util\game_state.hpp" />
     <ClInclude Include="source\util\loading_state.h" />
@@ -56,7 +56,6 @@
   <ItemGroup>
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="program.cpp" />
-    <ClCompile Include="projectile.cpp" />
     <ClCompile Include="source\core\application.cpp" />
     <ClCompile Include="source\input\command.cpp" />
     <ClCompile Include="source\input\command_queue.cpp" />
@@ -64,6 +63,7 @@
     <ClCompile Include="source\model\aircraft.cpp" />
     <ClCompile Include="source\model\entity.cpp" />
     <ClCompile Include="source\model\player.cpp" />
+    <ClCompile Include="source\model\projectile.cpp" />
     <ClCompile Include="source\util\DataTables.cpp" />
     <ClCompile Include="source\util\game_state.cpp" />
     <ClCompile Include="source\util\loading_state.cpp" />

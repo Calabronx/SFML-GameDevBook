@@ -14,7 +14,9 @@ public:
 		MoveRight,
 		MoveUp,
 		MoveDown,
-		ActionCount
+		ActionCount,
+		Fire,
+		LaunchMissile
 
 	};
 								Player();
@@ -34,6 +36,7 @@ private:
 	std::map<sf::Keyboard::Key, Action> mKeyBinding;
 	std::map<Action, Command>			mActionBinding;
     static const float playerSpeed;
+
 };
 #endif // !PLAYER_HPP
 

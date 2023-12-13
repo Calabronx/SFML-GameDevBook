@@ -1,5 +1,6 @@
 #include "DataTables.hpp"
 #include "../model/aircraft.hpp"
+#include "../model/projectile.hpp"
 
 std::vector<AircraftData> initializeAircraftData()
 {
@@ -23,6 +24,25 @@ std::vector<AircraftData> initializeAircraftData()
 	data[Aircraft::Avenger].directions.push_back(Direction(0, 50));
 	data[Aircraft::Avenger].directions.push_back(Direction(+45, 50));
 	//data[Aircraft::Raptor].directions.push_back
+
+	return data;
+}
+
+std::vector<ProjectileData> initializeProjectileData()
+{
+	std::vector<ProjectileData> data(Projectile::TypeCount);
+
+	data[Projectile::AlliedBullet].damage = 10;
+	data[Projectile::AlliedBullet].speed = 300.0f;
+	data[Projectile::AlliedBullet].texture = Textures::Bullet;
+
+	data[Projectile::EnemyBullet].damage = 10;
+	data[Projectile::EnemyBullet].speed = 300.0f;
+	data[Projectile::EnemyBullet].texture = Textures::Bullet;
+
+	data[Projectile::Missile].damage = 200;
+	data[Projectile::Missile].speed = 150.f;
+	data[Projectile::Missile].texture = Textures::Missile;
 
 	return data;
 }
