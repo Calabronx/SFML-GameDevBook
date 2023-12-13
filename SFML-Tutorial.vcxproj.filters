@@ -135,6 +135,9 @@
     <ClInclude Include="source\util\DataTables.hpp">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClInclude>
+    <ClInclude Include="projectile.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\util\resource_holder.inl">
@@ -222,6 +225,9 @@
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClCompile>
     <ClCompile Include="source\util\DataTables.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClCompile>
+    <ClCompile Include="projectile.cpp">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClCompile>
   </ItemGroup>

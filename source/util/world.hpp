@@ -29,6 +29,8 @@ private:
 	void								buildScene();
 	void								adaptPlayerPosition();
 	void								spawnEnemies();
+	void								addEnemies();
+	void								addEnemy(Aircraft::Type type, float relX, float relY);
 	sf::FloatRect				getViewBounds() const;
 	sf::FloatRect				getBattlefieldBounds() const;
 
@@ -64,7 +66,7 @@ private:
 	Aircraft*							mPlayerAircraft;
 	CommandQueue						mCommandQueue;
 
-	std::vector <SpawnPoint>		mEnemySpawnPoint;
+	std::vector <SpawnPoint>		mEnemySpawnPoints;
 	std::vector <Aircraft*>			mActiveEnemies;
 
 };
