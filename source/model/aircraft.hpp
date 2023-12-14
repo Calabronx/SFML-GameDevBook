@@ -38,6 +38,8 @@ private:
 
 	void		 createBullets(SceneNode& node, const TextureHolder& textures) const;
 	void		 createProjectile(SceneNode& node, Projectile::Type type, float xOffset, float yOffset, const TextureHolder& textures) const;
+
+	bool isAllied() const;
 private:
 	Type			mType;
 	sf::Sprite		mSprite;
@@ -47,6 +49,10 @@ private:
 	std::size_t		mDirectionIndex;
 	bool			mIsFiring;
 	bool			mIsLaunchingMissile;
+
+	int					mSpreadLevel;
+	int					mMissileAmmo;
+
 	sf::Time		mFireCountdown;
 	Command			mFireCommand;
 	Command			mMissileCommand;

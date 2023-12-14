@@ -26,6 +26,7 @@ Application::Application()
 	mTextures.load(Textures::ButtonNormal, "Media/Textures/ButtonNormal.png");
 	mTextures.load(Textures::ButtonSelected, "Media/Textures/ButtonSelected.png");
 	mTextures.load(Textures::ButtonPressed, "Media/Textures/ButtonPressed.png");
+	mTextures.load(Textures::Bullet, "Media/Textures/Bullet.png");
 
 	mStatisticsText.setFont(mFonts.get(Fonts::Main));
 	mStatisticsText.setPosition(5.0f, 5.0f);
