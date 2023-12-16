@@ -89,10 +89,10 @@ unsigned int Aircraft::getCategory() const
 {
 	switch (mType)
 	{
-		case Eagle:
-			return Category::PlayerAircraft;
-		default:
-			return Category::EnemyAircraft;
+	case Eagle:
+		return Category::PlayerAircraft;
+	default:
+		return Category::EnemyAircraft;
 	}
 }
 
@@ -124,6 +124,18 @@ void Aircraft::updateMovementPattern(sf::Time dt)
 		setVelocity(vx, vy);
 		mTravelledDistance += getMaxSpeed() * dt.asSeconds();
 	}
+}
+
+void Aircraft::updateCurrent(sf::Time dt, CommandQueue& commands)
+{
+	/*if (isDestroyed())
+	{
+	}*/
+	updateMovementPattern(dt);
+	Entity::updateCurrent(dt, commands);
+
+	updateTexts();
+
 }
 
 void Aircraft::checkProjectileLaunch(sf::Time dt, CommandQueue& commands)
@@ -182,7 +194,7 @@ void Aircraft::createProjectile(SceneNode& node, Projectile::Type type, float xO
 	std::unique_ptr<Projectile> projectile(new Projectile(type, textures));
 
 	sf::Vector2f offset(xOffset * mSprite.getGlobalBounds().width, yOffset * mSprite.getGlobalBounds().height);
-	sf::Vector2f velocity(0, projectile ->getMaxSpeed());
+	sf::Vector2f velocity(0, projectile->getMaxSpeed());
 
 	float sign = isAllied() ? -1.f : +1.f;
 	projectile->setPosition(getWorldPosition() + offset * sign);

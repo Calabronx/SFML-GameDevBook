@@ -60,9 +60,6 @@
     <ClInclude Include="source\util\world.hpp">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClInclude>
-    <ClInclude Include="category.hpp">
-      <Filter>Source Files\AircraftGame\util</Filter>
-    </ClInclude>
     <ClInclude Include="source\input\Command.hpp">
       <Filter>Source Files\AircraftGame\input</Filter>
     </ClInclude>
@@ -137,6 +134,9 @@
     </ClInclude>
     <ClInclude Include="source\model\projectile.hpp">
       <Filter>Source Files\AircraftGame\model</Filter>
+    </ClInclude>
+    <ClInclude Include="source\util\category.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,11 +1,10 @@
 #pragma once
-#include <queue>
-
-#include "Command.hpp"
-
 #ifndef COMMAND_QUEUE_HPP
 #define COMMAND_QUEUE_HPP
 
+#include "Command.hpp"
+
+#include <queue>
 
 class CommandQueue
 {

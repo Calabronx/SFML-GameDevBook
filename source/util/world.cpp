@@ -46,7 +46,7 @@ void World::update(sf::Time dt)
 		mSceneGraph.onCommand(mCommandQueue.pop(), dt);
 
 	// Regular update step
-	mSceneGraph.update(dt);
+	mSceneGraph.update(dt, mCommandQueue);
 }
 
 void World::draw()

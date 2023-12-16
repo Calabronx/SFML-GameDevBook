@@ -3,12 +3,14 @@
 #define SCENE_NODE_HPP
 
 #include "../input/Command.hpp"
+#include "../input/command_queue.h"
 
 #include<SFML/Graphics.hpp>
 #include<memory>
 #include<vector>
 
 struct Command;
+class CommandQueue;
 
 class SceneNode : public sf::Transformable, public sf::Drawable, private sf::NonCopyable
 {
@@ -18,7 +20,7 @@ public:
 public:
 	SceneNode();
 	void attachChild(Ptr child);
-	void update(sf::Time dt);
+	void update(sf::Time dt, CommandQueue& commands);
 	Ptr  detachChild(const SceneNode& node);
 
 	sf::Transform	getWorldTransform() const;
@@ -31,8 +33,8 @@ public:
 private:
 	virtual void	draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	virtual void	drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
-	virtual void	updateCurrent(sf::Time dt);
-	void			updateChildren(sf::Time dt);
+	virtual void	updateCurrent(sf::Time dt, CommandQueue& commands);
+	void			updateChildren(sf::Time dt, CommandQueue& commands);
 
 	void				drawChildren(sf::RenderTarget& target, sf::RenderStates states) const;
 

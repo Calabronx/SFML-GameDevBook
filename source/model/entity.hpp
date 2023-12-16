@@ -5,6 +5,7 @@
 #include<SFML/Graphics.hpp>
 
 #include "../util/scene_node.hpp"
+#include "../input/command_queue.h"
 
 
 class Entity : public SceneNode
@@ -23,12 +24,13 @@ public:
 	void accelerate(sf::Vector2f velocity);
 	void accelerate(float vx, float vy);
 	sf::Vector2f getVelocity() const;
+
+	virtual void updateCurrent(sf::Time dt, CommandQueue& commands);
 public:
 	sf::Vector2f mVelocity;
 
 private:
 	int mHitpoints;
-	virtual void updateCurrent(sf::Time dt);
 };
 #endif // !ENTITY_HPP
 

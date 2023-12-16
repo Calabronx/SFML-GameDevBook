@@ -1,29 +1,39 @@
 #include "entity.hpp"
 
+
 Entity::Entity(int hitpoints)
+	: mVelocity()
+	, mHitpoints(hitpoints)
 {
 }
 
 void Entity::repair(int points)
 {
+	assert(points > 0);
+
+	mHitpoints += points;
 }
 
 void Entity::damage(int points)
 {
+	assert(points > 0);
+
+	mHitpoints -= points;
 }
 
 void Entity::destroy()
 {
+	mHitpoints = 0;
 }
 
 int Entity::getHitpoints() const
 {
-	return 0;
+	return mHitpoints;
 }
 
 bool Entity::isDestroyed() const
 {
-	return false;
+	return mHitpoints <= 0;
 }
 
 void Entity::setVelocity(sf::Vector2f velocity)
@@ -53,7 +63,7 @@ sf::Vector2f Entity::getVelocity() const
 	return mVelocity;
 }
 
-void Entity::updateCurrent(sf::Time dt)
+void Entity::updateCurrent(sf::Time dt, CommandQueue&)
 {
 	move(mVelocity * dt.asSeconds());
 }

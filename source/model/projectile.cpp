@@ -1,6 +1,7 @@
 #include "projectile.hpp"
 #include "../util/DataTables.hpp"
 #include "../util/utility.hpp"
+#include "../util/category.hpp"
 
 namespace {
     const std::vector<ProjectileData> Table = initializeProjectileData();
@@ -36,21 +37,22 @@ unsigned int Projectile::getCategory() const
 
 sf::FloatRect Projectile::getBoundingRect() const
 {
-    return sf::FloatRect();
+    return getWorldTransform().transformRect(mSprite.getGlobalBounds());
 }
 
 float Projectile::getMaxSpeed() const
 {
-    return 0.0f;
+    return Table[mType].speed;
 }
 
 int Projectile::getDamage() const
 {
-    return 0;
+    return Table[mType].damage;
 }
 
 void Projectile::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
+    Entity::updateCurrent(dt, commands);
 }
 
 void Projectile::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const

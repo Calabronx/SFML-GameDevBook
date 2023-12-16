@@ -34,6 +34,7 @@ private:
 	virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
 	void		 updateTexts();
 	void		 updateMovementPattern(sf::Time dt);
+	void	     updateCurrent(sf::Time dt, CommandQueue& commands);
 	void		 checkProjectileLaunch(sf::Time dt, CommandQueue& commands);
 
 	void		 createBullets(SceneNode& node, const TextureHolder& textures) const;
