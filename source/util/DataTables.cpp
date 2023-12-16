@@ -14,21 +14,20 @@ std::vector<AircraftData> initializeAircraftData()
 	data[Aircraft::Raptor].hitpoints = 20;
 	data[Aircraft::Raptor].speed = 80.0f;
 	data[Aircraft::Raptor].texture = Textures::Raptor;
-	data[Aircraft::Raptor].directions.push_back(Direction(45, 80));
-	data[Aircraft::Raptor].directions.push_back(Direction(-45, 160));
-	data[Aircraft::Raptor].directions.push_back(Direction(45, 80));
+	data[Aircraft::Raptor].directions.push_back(Direction(+45.f, 80.f));
+	data[Aircraft::Raptor].directions.push_back(Direction(-45.f, 160.f));
+	data[Aircraft::Raptor].directions.push_back(Direction(+45.f, 80.f));
 	data[Aircraft::Raptor].fireInterval = sf::Time::Zero;
 
 	data[Aircraft::Avenger].hitpoints = 40;
 	data[Aircraft::Avenger].speed = 50.f;
 	data[Aircraft::Avenger].texture = Textures::Avenger;
-	data[Aircraft::Avenger].directions.push_back(Direction(+45, 50));
-	data[Aircraft::Avenger].directions.push_back(Direction(0, 50));
-	data[Aircraft::Avenger].directions.push_back(Direction(-45, 100));
-	data[Aircraft::Avenger].directions.push_back(Direction(0, 50));
-	data[Aircraft::Avenger].directions.push_back(Direction(+45, 50));
+	data[Aircraft::Avenger].directions.push_back(Direction(+45.f, 50.f));
+	data[Aircraft::Avenger].directions.push_back(Direction(0.f, 50.f));
+	data[Aircraft::Avenger].directions.push_back(Direction(-45.f, 100.f));
+	data[Aircraft::Avenger].directions.push_back(Direction(0.f, 50.f));
+	data[Aircraft::Avenger].directions.push_back(Direction(+45.f, 50.f));
 	data[Aircraft::Avenger].fireInterval = sf::seconds(2);
-	//data[Aircraft::Raptor].directions.push_back
 
 	return data;
 }
@@ -52,6 +51,3 @@ std::vector<ProjectileData> initializeProjectileData()
 	return data;
 }
 
-Direction::Direction(float angle, float distance)
-{
-}

@@ -16,7 +16,7 @@ struct AircraftMover
 	void operator() (Aircraft& aircrft, sf::Time) const
 	{
 		Aircraft& aircraft = static_cast<Aircraft&>(aircrft);
-		aircraft.accelerate(velocity * aircraft.getMaxSpeed());
+		aircraft.accelerate(velocity);
 	}
 
 	sf::Vector2f velocity;
@@ -41,13 +41,6 @@ void Player::handleEvent(const sf::Event& event, CommandQueue& commands)
 {
 	if (event.type == sf::Event::KeyPressed)
 	{
-		/*Command output;
-		output.category = Category::PlayerAircraft;
-		output.action = [](SceneNode& s, sf::Time)
-		{
-			std::cout << "X: " << s.getPosition().x << ", Y: " << s.getPosition().y << "\n";
-		};
-		commands.push(output);*/
 		// Check if pressed key appeards in key binding, trigger command if so
 		auto found = mKeyBinding.find(event.key.code);
 		if (found != mKeyBinding.end() && !isRealTimeAction(found->second))

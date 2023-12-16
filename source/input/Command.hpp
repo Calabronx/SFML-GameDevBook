@@ -5,8 +5,8 @@
 #include<SFML/Graphics.hpp>
 #include <cassert>
 
-#include "../util/scene_node.hpp"
 #include "../util/category.hpp"
+
 
 class SceneNode;
 

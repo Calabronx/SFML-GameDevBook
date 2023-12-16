@@ -17,6 +17,7 @@ public:
 	void destroy();
 
 	int getHitpoints() const;
+	sf::FloatRect getBoundingRect() const;
 	bool isDestroyed() const;
 
 	void setVelocity(sf::Vector2f velocity);

@@ -4,10 +4,15 @@
 #include <vector>
 #include "resource_holder.hpp"
 #include "ResourceIdentifiers.hpp"
+
 class Aircraft;
 
 struct Direction {
-					Direction(float angle, float distance);
+	Direction(float angle, float distance)
+	: angle(angle)
+	, distance(distance)
+	{
+	}
 	float			angle;
 	float			distance;
 };

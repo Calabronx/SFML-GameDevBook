@@ -27,6 +27,8 @@ void World::update(sf::Time dt)
 	mWorldView.move(0.0f, mScrollSpeed * dt.asSeconds());
 	mPlayerAircraft->setVelocity(0.0f, 0.0f);
 
+	//destroyEntitiesOutsideView();
+
 	sf::Vector2f position = mPlayerAircraft->getPosition();
 	sf::Vector2f velocity = mPlayerAircraft->getVelocity();
 
@@ -46,6 +48,8 @@ void World::update(sf::Time dt)
 		mSceneGraph.onCommand(mCommandQueue.pop(), dt);
 
 	// Regular update step
+	spawnEnemies();
+
 	mSceneGraph.update(dt, mCommandQueue);
 }
 
@@ -62,10 +66,12 @@ CommandQueue& World::getCommandQueue()
 
 void World::loadTextures()
 {
-	mTextures.load(Textures::Eagle,  "Media/Textures/Eagle.png");
-	mTextures.load(Textures::Raptor, "Media/Textures/Raptor.png");
-	mTextures.load(Textures::Desert, "Media/Textures/Desert.png");
-	mTextures.load(Textures::Avenger, "Media/Textures/Avenger.png");
+	mTextures.load(Textures::Eagle,		"Media/Textures/Eagle.png");
+	mTextures.load(Textures::Raptor,	"Media/Textures/Raptor.png");
+	mTextures.load(Textures::Desert,	"Media/Textures/Desert.png");
+	mTextures.load(Textures::Avenger,	"Media/Textures/Avenger.png");
+
+	mTextures.load(Textures::Bullet,	"Media/Textures/Bullet.png");
 }
 
 void World::buildScene()
@@ -95,14 +101,17 @@ void World::buildScene()
 	mPlayerAircraft->setVelocity(40.0f, mScrollSpeed);
 	mSceneLayers[Air]->attachChild(std::move(leader));
 
-	// add two escorting aircrafts, placed relatively to the main plane
-	std::unique_ptr<Aircraft> leftEscort(new Aircraft(Aircraft::Raptor, mTextures, mFonts));
-	leftEscort->setPosition(-80.0f, 50.0f);
-	mPlayerAircraft->attachChild(std::move(leftEscort));
+	//// add two escorting aircrafts, placed relatively to the main plane
+	//std::unique_ptr<Aircraft> leftEscort(new Aircraft(Aircraft::Raptor, mTextures, mFonts));
+	//leftEscort->setPosition(-80.0f, 50.0f);
+	//mPlayerAircraft->attachChild(std::move(leftEscort));
 
-	std::unique_ptr<Aircraft> rightEscort(new Aircraft(Aircraft::Raptor, mTextures, mFonts));
-	rightEscort->setPosition(80.0f, 50.0f);
-	mPlayerAircraft->attachChild(std::move(rightEscort));
+	//std::unique_ptr<Aircraft> rightEscort(new Aircraft(Aircraft::Raptor, mTextures, mFonts));
+	//rightEscort->setPosition(80.0f, 50.0f);
+	//mPlayerAircraft->attachChild(std::move(rightEscort));
+
+	// Add enemy aircraft
+	addEnemies();
 }
 
 void World::adaptPlayerPosition()
@@ -137,7 +146,13 @@ void World::spawnEnemies()
 void World::addEnemies()
 {
 	addEnemy(Aircraft::Raptor, 0.0f, 500.f);
-	addEnemy(Aircraft::Avenger, -70.0f, 1400.f);
+	addEnemy(Aircraft::Raptor, 0.0f, 1000.f);
+	addEnemy(Aircraft::Raptor, +100.f, 1100.f);
+	addEnemy(Aircraft::Raptor, -100.f, 1100.f);
+	addEnemy(Aircraft::Avenger, -70.f, 1400.f);
+	addEnemy(Aircraft::Avenger, -70.f, 1600.f);
+	addEnemy(Aircraft::Avenger, 70.f, 1400.f);
+	addEnemy(Aircraft::Avenger, 70.f, 1600.f);
 
 	// sort all enemies according to ther y value, such that lower enemies are checked first for spawning
 	std::sort(mEnemySpawnPoints.begin(), mEnemySpawnPoints.end(), [](SpawnPoint lhs, SpawnPoint rhs)
@@ -152,16 +167,30 @@ void World::addEnemy(Aircraft::Type type, float relX, float relY)
 	mEnemySpawnPoints.push_back(spawn);
 }
 
+void World::destroyEntitiesOutsideView()
+{
+	Command command;
+	command.category = Category::Projectile | Category::EnemyAircraft;
+	command.action = derivedAction<Entity>([this](Entity& e, sf::Time)
+		{
+			if (!getBattlefieldBounds().intersects(e.getBoundingRect()))
+				e.destroy();
+		});
+
+	mCommandQueue.push(command);
+}
+
 sf::FloatRect World::getViewBounds() const
 {
-	return sf::FloatRect();
+	return sf::FloatRect(mWorldView.getCenter() - mWorldView.getSize() / 2.f, mWorldView.getSize());
 }
 
 sf::FloatRect World::getBattlefieldBounds() const
 {
-	return sf::FloatRect();
+	sf::FloatRect bounds = getViewBounds();
+	bounds.top -= 100.f;
+	bounds.height += 100.f;
+
+	return bounds;
 }
 
-World::SpawnPoint::SpawnPoint(Aircraft::Type type, float x, float y)
-{
-}

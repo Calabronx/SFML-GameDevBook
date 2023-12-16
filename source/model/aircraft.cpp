@@ -84,6 +84,11 @@ void Aircraft::launchMissile()
 	}
 }
 
+sf::FloatRect Aircraft::getBoundingRect() const
+{
+	return getWorldTransform().transformRect(mSprite.getGlobalBounds());
+}
+
 
 unsigned int Aircraft::getCategory() const
 {
@@ -131,6 +136,7 @@ void Aircraft::updateCurrent(sf::Time dt, CommandQueue& commands)
 	/*if (isDestroyed())
 	{
 	}*/
+	checkProjectileLaunch(dt, commands);
 	updateMovementPattern(dt);
 	Entity::updateCurrent(dt, commands);
 

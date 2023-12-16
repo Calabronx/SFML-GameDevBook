@@ -31,6 +31,7 @@ private:
 	void								spawnEnemies();
 	void								addEnemies();
 	void								addEnemy(Aircraft::Type type, float relX, float relY);
+	void								destroyEntitiesOutsideView();
 	sf::FloatRect				getViewBounds() const;
 	sf::FloatRect				getBattlefieldBounds() const;
 
@@ -44,7 +45,12 @@ private:
 
 	struct SpawnPoint
 	{
-		SpawnPoint(Aircraft::Type type, float x, float y);
+		SpawnPoint(Aircraft::Type type, float x, float y)
+		: type(type)
+		, x(x)
+		, y(y)
+		{
+		}
 
 		Aircraft::Type type;
 		float		   x;

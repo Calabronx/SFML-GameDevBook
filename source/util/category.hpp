@@ -15,6 +15,9 @@ namespace Category
 		EnemyAircraft		= 1 << 3,
 		AlliedProjectile	= 1 << 5,
 		EnemyProjectile		= 1 << 6,
+
+		Aircraft = PlayerAircraft | AlliedAircraft | EnemyAircraft,
+		Projectile = AlliedAircraft | EnemyAircraft,
 	};
 }
 
