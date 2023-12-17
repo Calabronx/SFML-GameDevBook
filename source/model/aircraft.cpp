@@ -36,7 +36,7 @@ Aircraft::Aircraft(Type type, const TextureHolder& textures, const FontHolder& f
 	, mFireCountdown(sf::Time::Zero)
 	, mIsFiring(false)
 	, mIsLaunchingMissile(false)
-	//, mIsMarkedForRemoval(false)
+	, mIsMarkedForRemoval(false)
 	, mFireRateLevel(1)
 	, mSpreadLevel(1)
 	, mMissileAmmo(2)
@@ -44,7 +44,7 @@ Aircraft::Aircraft(Type type, const TextureHolder& textures, const FontHolder& f
 	, mTravelledDistance(0.f)
 	, mDirectionIndex(0)
 	, mHealthDisplay(nullptr)
-	/*, mMissileDisplay(nullptr)*/
+	, mMissileDisplay(nullptr)
 {
 	centerOrigin(mSprite);
 
@@ -66,6 +66,15 @@ Aircraft::Aircraft(Type type, const TextureHolder& textures, const FontHolder& f
 	std::unique_ptr<TextNode> healthDisplay(new TextNode(fonts, ""));
 	mHealthDisplay = healthDisplay.get();
 	attachChild(std::move(healthDisplay));
+
+	if (getCategory() == Category::PlayerAircraft)
+	{
+		std::unique_ptr<TextNode> missileDisplay(new TextNode(fonts, ""));
+		missileDisplay->setPosition(0, 70);
+		mMissileDisplay = missileDisplay.get();
+		attachChild(std::move(missileDisplay));
+	}
+	updateTexts();
 }
 
 void Aircraft::fire()
@@ -87,6 +96,11 @@ void Aircraft::launchMissile()
 sf::FloatRect Aircraft::getBoundingRect() const
 {
 	return getWorldTransform().transformRect(mSprite.getGlobalBounds());
+}
+
+bool Aircraft::isMarkedForRemoval() const
+{
+	return mIsMarkedForRemoval;
 }
 
 
@@ -111,6 +125,15 @@ void Aircraft::updateTexts()
 	mHealthDisplay->setString(toString(getHitpoints()) + " HP");
 	mHealthDisplay->setPosition(0.f, 50.f);
 	mHealthDisplay->setRotation(-getRotation());
+
+	if (mMissileDisplay)
+	{
+		if (mMissileAmmo == 0)
+			mMissileDisplay->setString("");
+		else
+			mMissileDisplay->setString("M: " + toString(mMissileAmmo));
+	}
+
 }
 
 void Aircraft::updateMovementPattern(sf::Time dt)

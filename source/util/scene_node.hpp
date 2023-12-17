@@ -23,10 +23,16 @@ public:
 	void update(sf::Time dt, CommandQueue& commands);
 	Ptr  detachChild(const SceneNode& node);
 
-	sf::Transform	getWorldTransform() const;
-	sf::Vector2f	getWorldPosition()	const;
+	sf::Transform							getWorldTransform() const;
+	sf::Vector2f							getWorldPosition()	const;
+	float									distance(const SceneNode& lhs, const SceneNode& rhs);
+
+	void									removeWrecks();
+	virtual sf::FloatRect getBoundingRect() const;
 
 	void									onCommand(const Command& command, sf::Time dt);
+	virtual bool	isMarkedForRemoval() const;
+	virtual bool	isDestroyed() const;
 	virtual unsigned int	getCategory() const;
 
 

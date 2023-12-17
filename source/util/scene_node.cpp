@@ -3,6 +3,7 @@
 
 #include "../util/category.hpp"
 #include "../input/Command.hpp"
+#include "utility.hpp"
 
 SceneNode::SceneNode()
 	: mChildren()
@@ -70,6 +71,24 @@ sf::Vector2f SceneNode::getWorldPosition() const
 	return getWorldTransform() * sf::Vector2f();
 }
 
+float SceneNode::distance(const SceneNode& lhs, const SceneNode& rhs)
+{
+	return length(lhs.getWorldPosition() - rhs.getWorldPosition());
+}
+
+void SceneNode::removeWrecks()
+{
+	auto wreckFieldBegin = std::remove_if(mChildren.begin(), mChildren.end(), std::mem_fn(&SceneNode::isMarkedForRemoval));
+	mChildren.erase(wreckFieldBegin, mChildren.end());
+
+	std::for_each(mChildren.begin(), mChildren.end(), std::mem_fn(&SceneNode::removeWrecks));
+}
+
+sf::FloatRect SceneNode::getBoundingRect() const
+{
+	return sf::FloatRect();
+}
+
 void SceneNode::onCommand(const Command& command, sf::Time dt)
 {
 	if (command.category & getCategory())
@@ -77,6 +96,17 @@ void SceneNode::onCommand(const Command& command, sf::Time dt)
 
 	for (Ptr& child : mChildren)
 		child->onCommand(command, dt);
+}
+
+bool SceneNode::isMarkedForRemoval() const
+{
+	return isDestroyed();
+}
+
+bool SceneNode::isDestroyed() const
+{
+	// by default, remove node if entity is destroyed
+	return false;
 }
 
 unsigned int SceneNode::getCategory() const

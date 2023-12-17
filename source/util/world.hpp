@@ -31,7 +31,11 @@ private:
 	void								spawnEnemies();
 	void								addEnemies();
 	void								addEnemy(Aircraft::Type type, float relX, float relY);
+	void								adaptPlayerVelocity();
 	void								destroyEntitiesOutsideView();
+	void								guideMissiles();
+
+	bool								hasAlivePlayer() const;
 	sf::FloatRect				getViewBounds() const;
 	sf::FloatRect				getBattlefieldBounds() const;
 

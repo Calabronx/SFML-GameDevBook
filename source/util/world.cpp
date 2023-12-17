@@ -1,5 +1,6 @@
 #include "world.hpp"
 #include "resource_holder.hpp"
+#include "utility.hpp"
 
 World::World(sf::RenderWindow& window, FontHolder& fonts)
 	: mWindow(window)
@@ -24,33 +25,24 @@ World::World(sf::RenderWindow& window, FontHolder& fonts)
 
 void World::update(sf::Time dt)
 {
+	// scroll the world, reset player velocity
 	mWorldView.move(0.0f, mScrollSpeed * dt.asSeconds());
 	mPlayerAircraft->setVelocity(0.0f, 0.0f);
 
-	//destroyEntitiesOutsideView();
-
-	sf::Vector2f position = mPlayerAircraft->getPosition();
-	sf::Vector2f velocity = mPlayerAircraft->getVelocity();
-
-	if (velocity.x != 0.0f && velocity.y != 0.0f)
-		mPlayerAircraft->setVelocity(velocity / std::sqrt(2.0f));
-
-	mPlayerAircraft->accelerate(0.0f, mScrollSpeed);
-
-	if (position.x <= mWorldBounds.left + 150 || position.x >= mWorldBounds.left + mWorldBounds.width - 150)
-	{
-		velocity.x = -velocity.x;
-		mPlayerAircraft->setVelocity(velocity);
-	}
+	destroyEntitiesOutsideView();
+	guideMissiles();
 
 	// Forward commands to the scene graph
 	while (!mCommandQueue.isEmpty())
 		mSceneGraph.onCommand(mCommandQueue.pop(), dt);
+	adaptPlayerVelocity();
 
-	// Regular update step
+	mSceneGraph.removeWrecks();
 	spawnEnemies();
 
+	// Regular update step
 	mSceneGraph.update(dt, mCommandQueue);
+	adaptPlayerPosition();
 }
 
 void World::draw()
@@ -66,12 +58,13 @@ CommandQueue& World::getCommandQueue()
 
 void World::loadTextures()
 {
-	mTextures.load(Textures::Eagle,		"Media/Textures/Eagle.png");
-	mTextures.load(Textures::Raptor,	"Media/Textures/Raptor.png");
-	mTextures.load(Textures::Desert,	"Media/Textures/Desert.png");
-	mTextures.load(Textures::Avenger,	"Media/Textures/Avenger.png");
+	mTextures.load(Textures::Eagle, "Media/Textures/Eagle.png");
+	mTextures.load(Textures::Raptor, "Media/Textures/Raptor.png");
+	mTextures.load(Textures::Desert, "Media/Textures/Desert.png");
+	mTextures.load(Textures::Avenger, "Media/Textures/Avenger.png");
 
-	mTextures.load(Textures::Bullet,	"Media/Textures/Bullet.png");
+	mTextures.load(Textures::Bullet, "Media/Textures/Bullet.png");
+	mTextures.load(Textures::Missile, "Media/Textures/Missile.png");
 }
 
 void World::buildScene()
@@ -100,15 +93,6 @@ void World::buildScene()
 	mPlayerAircraft->setPosition(mSpawnPosition);
 	mPlayerAircraft->setVelocity(40.0f, mScrollSpeed);
 	mSceneLayers[Air]->attachChild(std::move(leader));
-
-	//// add two escorting aircrafts, placed relatively to the main plane
-	//std::unique_ptr<Aircraft> leftEscort(new Aircraft(Aircraft::Raptor, mTextures, mFonts));
-	//leftEscort->setPosition(-80.0f, 50.0f);
-	//mPlayerAircraft->attachChild(std::move(leftEscort));
-
-	//std::unique_ptr<Aircraft> rightEscort(new Aircraft(Aircraft::Raptor, mTextures, mFonts));
-	//rightEscort->setPosition(80.0f, 50.0f);
-	//mPlayerAircraft->attachChild(std::move(rightEscort));
 
 	// Add enemy aircraft
 	addEnemies();
@@ -156,9 +140,9 @@ void World::addEnemies()
 
 	// sort all enemies according to ther y value, such that lower enemies are checked first for spawning
 	std::sort(mEnemySpawnPoints.begin(), mEnemySpawnPoints.end(), [](SpawnPoint lhs, SpawnPoint rhs)
-	{
+		{
 			return lhs.y < rhs.y;
-	});
+		});
 }
 
 void World::addEnemy(Aircraft::Type type, float relX, float relY)
@@ -167,17 +151,71 @@ void World::addEnemy(Aircraft::Type type, float relX, float relY)
 	mEnemySpawnPoints.push_back(spawn);
 }
 
+void World::adaptPlayerVelocity()
+{
+	sf::Vector2f velocity = mPlayerAircraft->getVelocity();
+
+	// if moving diagonally, reduce velocity ( to have always the same velocity)
+	if (velocity.x != 0.0f && velocity.y != 0.0f)
+		mPlayerAircraft->setVelocity(velocity / std::sqrt(2.0f));
+
+	mPlayerAircraft->accelerate(0.0f, mScrollSpeed);
+}
+
 void World::destroyEntitiesOutsideView()
 {
 	Command command;
 	command.category = Category::Projectile | Category::EnemyAircraft;
-	command.action = derivedAction<Entity>([this](Entity& e, sf::Time)
+	command.action = derivedAction<Aircraft>([this](Aircraft& e, sf::Time)
 		{
 			if (!getBattlefieldBounds().intersects(e.getBoundingRect()))
 				e.destroy();
 		});
 
 	mCommandQueue.push(command);
+}
+
+void World::guideMissiles()
+{
+	Command enemyCollector;
+	enemyCollector.category = Category::EnemyAircraft;
+	enemyCollector.action = derivedAction<Aircraft>([this](Aircraft& enemy, sf::Time) {
+		if (!enemy.isDestroyed())
+			mActiveEnemies.push_back(&enemy);
+		});
+	Command missileGuider;
+	missileGuider.category = Category::AlliedProjectile;
+	missileGuider.action = derivedAction<Projectile>([this](Projectile& missile, sf::Time)
+		{
+			// 
+			if (!missile.isGuided())
+				return;
+
+			float minDistance = std::numeric_limits<float>::max();
+			Aircraft* closestEnemy = nullptr;
+
+			for (Aircraft* enemy : mActiveEnemies)
+			{
+				float enemyDistance = distance(missile, *enemy);
+
+				if (enemyDistance < minDistance)
+				{
+					closestEnemy = enemy;
+					minDistance = enemyDistance;
+				}
+			}
+
+			if (closestEnemy)
+				missile.guideTowards(closestEnemy->getWorldPosition());
+		});
+	mCommandQueue.push(enemyCollector);
+	mCommandQueue.push(missileGuider);
+	mActiveEnemies.clear();
+}
+
+bool World::hasAlivePlayer() const
+{
+	return !mPlayerAircraft->isMarkedForRemoval();
 }
 
 sf::FloatRect World::getViewBounds() const

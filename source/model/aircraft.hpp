@@ -28,6 +28,7 @@ public:
 	void				 fire();
 	void				 launchMissile();
 	virtual	sf::FloatRect getBoundingRect() const;
+	virtual bool 			isMarkedForRemoval() const;
 private:
 
 	virtual unsigned int getCategory() const;
@@ -45,12 +46,12 @@ private:
 private:
 	Type			mType;
 	sf::Sprite		mSprite;
-	TextNode*		mHealthDisplay;
 	float		    mTravelledDistance;
 	float		    mFireRateLevel;
 	std::size_t		mDirectionIndex;
 	bool			mIsFiring;
 	bool			mIsLaunchingMissile;
+	bool			mIsMarkedForRemoval;
 
 	int					mSpreadLevel;
 	int					mMissileAmmo;
@@ -58,6 +59,8 @@ private:
 	sf::Time		mFireCountdown;
 	Command			mFireCommand;
 	Command			mMissileCommand;
+	TextNode*		mHealthDisplay;
+	TextNode*		mMissileDisplay;
 };
 #endif // !AIRCRAFT_HPP
 
