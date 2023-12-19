@@ -24,7 +24,11 @@ namespace Textures
 		ButtonSelected,
 		ButtonPressed,
 		Bullet,
-		Missile
+		Missile,
+		HealthRefill,
+		MissileRefill,
+		FireSpread,
+		FireRate
 	};
 }
 

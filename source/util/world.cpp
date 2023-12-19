@@ -65,6 +65,11 @@ void World::loadTextures()
 
 	mTextures.load(Textures::Bullet, "Media/Textures/Bullet.png");
 	mTextures.load(Textures::Missile, "Media/Textures/Missile.png");
+
+	mTextures.load(Textures::HealthRefill, "Media/Textures/HealthRefill.png");
+	mTextures.load(Textures::MissileRefill, "Media/Textures/MissileRefill.png");
+	mTextures.load(Textures::FireSpread, "Media/Textures/FireSpread.png");
+	mTextures.load(Textures::FireRate, "Media/Textures/FireRate.png");
 }
 
 void World::buildScene()

@@ -2,6 +2,7 @@
 #define DATATABLES_HPP
 
 #include <vector>
+#include <functional>
 #include "resource_holder.hpp"
 #include "ResourceIdentifiers.hpp"
 
@@ -33,6 +34,14 @@ struct ProjectileData
 	Textures::ID		texture;
 };
 
+struct PickupData
+{
+	std::function<void(Aircraft&)> action;
+	Textures::ID							texture;
+};
+
 std::vector<AircraftData>	initializeAircraftData();
 std::vector<ProjectileData> initializeProjectileData();
+std::vector<PickupData>		initializePickupData();
+
 #endif // !DATATABLES_HPP

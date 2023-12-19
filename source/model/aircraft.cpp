@@ -103,6 +103,23 @@ bool Aircraft::isMarkedForRemoval() const
 	return mIsMarkedForRemoval;
 }
 
+void Aircraft::increaseFireRate()
+{
+	if (mFireRateLevel < 10)
+		++mFireRateLevel;
+}
+
+void Aircraft::increaseSpread()
+{
+	if (mSpreadLevel < 10)
+		++mSpreadLevel;
+}
+
+void Aircraft::collectMissiles(unsigned int count)
+{
+	mMissileAmmo += count;
+}
+
 
 unsigned int Aircraft::getCategory() const
 {

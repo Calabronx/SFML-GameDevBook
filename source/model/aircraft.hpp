@@ -29,6 +29,10 @@ public:
 	void				 launchMissile();
 	virtual	sf::FloatRect getBoundingRect() const;
 	virtual bool 			isMarkedForRemoval() const;
+
+	void					increaseFireRate();
+	void					increaseSpread();
+	void					collectMissiles(unsigned int count);
 private:
 
 	virtual unsigned int getCategory() const;

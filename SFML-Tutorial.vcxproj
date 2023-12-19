@@ -26,6 +26,7 @@
     <ClInclude Include="source\input\command_queue.h" />
     <ClInclude Include="source\model\aircraft.hpp" />
     <ClInclude Include="source\model\entity.hpp" />
+    <ClInclude Include="source\model\pickup.hpp" />
     <ClInclude Include="source\model\player.h" />
     <ClInclude Include="source\model\projectile.hpp" />
     <ClInclude Include="source\util\category.hpp" />
@@ -62,6 +63,7 @@
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\model\aircraft.cpp" />
     <ClCompile Include="source\model\entity.cpp" />
+    <ClCompile Include="source\model\pickup.cpp" />
     <ClCompile Include="source\model\player.cpp" />
     <ClCompile Include="source\model\projectile.cpp" />
     <ClCompile Include="source\util\DataTables.cpp" />
