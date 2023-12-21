@@ -16,7 +16,7 @@ public:
 		MissileRefill,
 		FireSpread,
 		FireRate,
-		TypeCount
+		TypeCount,
 	};
 public:
 							Pickup(Type type, const TextureHolder& textures);

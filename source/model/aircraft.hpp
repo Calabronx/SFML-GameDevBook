@@ -45,6 +45,7 @@ private:
 
 	void		 createBullets(SceneNode& node, const TextureHolder& textures) const;
 	void		 createProjectile(SceneNode& node, Projectile::Type type, float xOffset, float yOffset, const TextureHolder& textures) const;
+	void		 createPickup(SceneNode& node, const TextureHolder& textures) const;
 
 	bool isAllied() const;
 private:
@@ -63,6 +64,7 @@ private:
 	sf::Time		mFireCountdown;
 	Command			mFireCommand;
 	Command			mMissileCommand;
+	Command			mDropPickupCommand;
 	TextNode*		mHealthDisplay;
 	TextNode*		mMissileDisplay;
 };

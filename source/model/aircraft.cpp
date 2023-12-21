@@ -4,6 +4,7 @@
 #include "../util/category.hpp"
 #include"../util/DataTables.hpp"
 #include "../util/StringHelpers.hpp"
+#include "pickup.hpp"
 
 
 namespace
@@ -40,7 +41,7 @@ Aircraft::Aircraft(Type type, const TextureHolder& textures, const FontHolder& f
 	, mFireRateLevel(1)
 	, mSpreadLevel(1)
 	, mMissileAmmo(2)
-	//, mDropPickupCommand()
+	, mDropPickupCommand()
 	, mTravelledDistance(0.f)
 	, mDirectionIndex(0)
 	, mHealthDisplay(nullptr)
@@ -58,6 +59,12 @@ Aircraft::Aircraft(Type type, const TextureHolder& textures, const FontHolder& f
 	mMissileCommand.action = [this, &textures](SceneNode& node, sf::Time)
 	{
 		createProjectile(node, Projectile::Missile, 0.f, 0.5f, textures);
+	};
+
+	mDropPickupCommand.category = Category::SceneAirLayer;
+	mDropPickupCommand.action = [this, &textures](SceneNode& node, sf::Time)
+	{
+		createPickup(node, textures);
 	};
 
 	sf::FloatRect bounds = mSprite.getLocalBounds();
@@ -193,7 +200,7 @@ void Aircraft::checkProjectileLaunch(sf::Time dt, CommandQueue& commands)
 	if (mIsFiring && mFireCountdown <= sf::Time::Zero)
 	{
 		// Interval expired: we can fire a new bullet
-		commands.push(mFireCommand);
+ 		commands.push(mFireCommand);
 		mFireCountdown += Table[mType].fireInterval / (mFireRateLevel + 1.f);
 		mIsFiring = false;
 	}
@@ -246,6 +253,16 @@ void Aircraft::createProjectile(SceneNode& node, Projectile::Type type, float xO
 	projectile->setPosition(getWorldPosition() + offset * sign);
 	projectile->setVelocity(velocity * sign);
 	node.attachChild(std::move(projectile));
+}
+
+void Aircraft::createPickup(SceneNode& node, const TextureHolder& textures) const
+{
+	auto type = static_cast<Pickup::Type>(randomInt(Pickup::TypeCount));
+
+	std::unique_ptr<Pickup> pickup(new Pickup(type, textures));
+	pickup->setPosition(getWorldPosition());
+	pickup->setVelocity(0.f, 1.f);
+	node.attachChild(std::move(pickup));
 }
 
 bool Aircraft::isAllied() const

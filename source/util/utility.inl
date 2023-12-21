@@ -2,6 +2,17 @@
 
 #include <cmath>
 #include <cassert>
+#include <random>
+
+namespace {
+	std::default_random_engine createRandomEngine()
+	{
+		auto seed = static_cast<unsigned long>(std::time(nullptr));
+		return std::default_random_engine(seed);
+	}
+
+	auto RandomEngine = createRandomEngine();
+}
 
 void centerOrigin(sf::Sprite& sprite)
 {
@@ -39,4 +50,11 @@ float toRadian(float degree)
  float distance(const SceneNode& lhs, const SceneNode& rhs)
  {
 	 return length(lhs.getWorldPosition() - rhs.getWorldPosition());
+ }
+
+ int randomInt(int exclusiveMax)
+ {
+	 std::uniform_int_distribution<> distr(0, exclusiveMax - 1);
+
+	 return distr(RandomEngine);
  }
