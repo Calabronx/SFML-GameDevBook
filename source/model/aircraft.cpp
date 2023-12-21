@@ -67,8 +67,8 @@ Aircraft::Aircraft(Type type, const TextureHolder& textures, const FontHolder& f
 		createPickup(node, textures);
 	};
 
-	sf::FloatRect bounds = mSprite.getLocalBounds();
-	mSprite.setOrigin(bounds.width / 2.0f, bounds.height / 2.0f);
+	/*sf::FloatRect bounds = mSprite.getLocalBounds();
+	mSprite.setOrigin(bounds.width / 2.0f, bounds.height / 2.0f);*/
 
 	std::unique_ptr<TextNode> healthDisplay(new TextNode(fonts, ""));
 	mHealthDisplay = healthDisplay.get();
@@ -180,9 +180,13 @@ void Aircraft::updateMovementPattern(sf::Time dt)
 
 void Aircraft::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
-	/*if (isDestroyed())
+	if (isDestroyed())
 	{
-	}*/
+		checkPickupDrop(commands);
+
+		mIsMarkedForRemoval = true;
+		return;
+	}
 	checkProjectileLaunch(dt, commands);
 	updateMovementPattern(dt);
 	Entity::updateCurrent(dt, commands);
@@ -263,6 +267,12 @@ void Aircraft::createPickup(SceneNode& node, const TextureHolder& textures) cons
 	pickup->setPosition(getWorldPosition());
 	pickup->setVelocity(0.f, 1.f);
 	node.attachChild(std::move(pickup));
+}
+
+void Aircraft::checkPickupDrop(CommandQueue& commands)
+{
+	if (!isAllied() && randomInt(3) == 0)
+		commands.push(mDropPickupCommand);
 }
 
 bool Aircraft::isAllied() const

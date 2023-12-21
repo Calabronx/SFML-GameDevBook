@@ -46,6 +46,7 @@ private:
 	void		 createBullets(SceneNode& node, const TextureHolder& textures) const;
 	void		 createProjectile(SceneNode& node, Projectile::Type type, float xOffset, float yOffset, const TextureHolder& textures) const;
 	void		 createPickup(SceneNode& node, const TextureHolder& textures) const;
+	void		 checkPickupDrop(CommandQueue& commands);
 
 	bool isAllied() const;
 private:
