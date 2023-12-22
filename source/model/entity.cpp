@@ -31,11 +31,6 @@ int Entity::getHitpoints() const
 	return mHitpoints;
 }
 
-sf::FloatRect Entity::getBoundingRect() const
-{
-	return sf::FloatRect();
-}
-
 bool Entity::isDestroyed() const
 {
 	return mHitpoints <= 0;

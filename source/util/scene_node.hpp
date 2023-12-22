@@ -8,6 +8,7 @@
 #include<SFML/Graphics.hpp>
 #include<memory>
 #include<vector>
+#include <set>
 
 struct Command;
 class CommandQueue;
@@ -16,9 +17,11 @@ class SceneNode : public sf::Transformable, public sf::Drawable, private sf::Non
 {
 public:
 	typedef std::unique_ptr<SceneNode> Ptr;
+	typedef std::pair<SceneNode*, SceneNode*> Pair;
 
 public:
 	SceneNode();
+	SceneNode(Category::Type category);
 	void attachChild(Ptr child);
 	void update(sf::Time dt, CommandQueue& commands);
 	Ptr  detachChild(const SceneNode& node);
@@ -28,12 +31,14 @@ public:
 	float									distance(const SceneNode& lhs, const SceneNode& rhs);
 
 	void									removeWrecks();
-	virtual sf::FloatRect getBoundingRect() const;
 
-	void									onCommand(const Command& command, sf::Time dt);
-	virtual bool	isMarkedForRemoval() const;
-	virtual bool	isDestroyed() const;
+	void								onCommand(const Command& command, sf::Time dt);
 	virtual unsigned int	getCategory() const;
+	void								checkNodeCollision(SceneNode& node, std::set<Pair>& collisionPairs);
+	void								checkSceneCollision(SceneNode& node, std::set<Pair>& collisionPairs);
+	virtual sf::FloatRect getBoundingRect() const;
+	virtual bool					isMarkedForRemoval() const;
+	virtual bool					isDestroyed() const;
 
 
 private:
@@ -48,6 +53,9 @@ private:
 private:
 	std::vector<Ptr> mChildren;
 	SceneNode* mParent;
+	Category::Type   mDefaultCategory;
 };
+	bool	collision(const SceneNode& lhs, const SceneNode& rhs);
+	float	distance(const SceneNode& lhs, const SceneNode& rhs);
 #endif // !SCENE_NODE_HPP
 

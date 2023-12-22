@@ -11,6 +11,13 @@ SceneNode::SceneNode()
 {
 }
 
+SceneNode::SceneNode(Category::Type category)
+	: mChildren()
+	, mParent(nullptr)
+	, mDefaultCategory(category)
+{
+}
+
 void SceneNode::attachChild(Ptr child)
 {
 	child->mParent = this;
@@ -55,7 +62,7 @@ void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	drawChildren(target, states);
 
 	// draw bounding rectangle - disabled by default
-	drawBoundingRect(target, states);
+	//drawBoundingRect(target, states);
 }
 
 void SceneNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
@@ -82,6 +89,28 @@ void SceneNode::drawChildren(sf::RenderTarget& target, sf::RenderStates states) 
 	for (const Ptr& child : mChildren)
 		child->draw(target, states);
 }
+
+void SceneNode::checkNodeCollision(SceneNode& node, std::set<Pair>& collisionPairs)
+{
+	if (this != &node && collision(*this, node) && !isDestroyed() && !node.isDestroyed())
+		collisionPairs.insert(std::minmax(this, &node));
+
+	for (Ptr& child : mChildren)
+		child->checkNodeCollision(node, collisionPairs);
+}
+
+void SceneNode::checkSceneCollision(SceneNode& sceneGraph, std::set<Pair>& collisionPairs)
+{
+	checkNodeCollision(sceneGraph, collisionPairs);
+
+	for (Ptr& child : sceneGraph.mChildren)
+		checkSceneCollision(*child, collisionPairs);
+}
+
+//bool SceneNode::collision(const SceneNode& lhs, const SceneNode& rhs)
+//{
+//	return lhs.getBoundingRect().intersects(rhs.getBoundingRect());
+//}
 
 sf::Vector2f SceneNode::getWorldPosition() const
 {
@@ -141,5 +170,7 @@ sf::Transform SceneNode::getWorldTransform() const
 	return transform;
 }
 
-
-
+bool collision(const SceneNode& lhs, const SceneNode& rhs)
+{
+	return lhs.getBoundingRect().intersects(rhs.getBoundingRect());
+}

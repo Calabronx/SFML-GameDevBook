@@ -34,8 +34,10 @@ private:
 	void								adaptPlayerVelocity();
 	void								destroyEntitiesOutsideView();
 	void								guideMissiles();
+	void								handleCollisions();
 
 	bool								hasAlivePlayer() const;
+	bool								matchesCategories(SceneNode::Pair& pair, Category::Type type1, Category::Type type2);
 	sf::FloatRect				getViewBounds() const;
 	sf::FloatRect				getBattlefieldBounds() const;
 
