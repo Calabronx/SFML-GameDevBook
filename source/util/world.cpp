@@ -2,6 +2,7 @@
 #include "resource_holder.hpp"
 #include "utility.hpp"
 #include "../model/pickup.hpp"
+#include <iostream>
 
 World::World(sf::RenderWindow& window, FontHolder& fonts)
 	: mWindow(window)
@@ -175,10 +176,15 @@ void World::destroyEntitiesOutsideView()
 {
 	Command command;
 	command.category = Category::Projectile | Category::EnemyAircraft;
+	//int category = command.category;
+	//std::cout << "category:" << category << std::endl;
 	command.action = derivedAction<Entity>([this](Entity& e, sf::Time)
 		{
-			if (!getBattlefieldBounds().intersects(e.getBoundingRect()))
+			//auto& entity = static_cast<Entity&>(e);
+			if (!getBattlefieldBounds().intersects(e.getBoundingRect())) {
+				std::cout << "Destroying entity outside view" << std::endl;
 				e.destroy();
+			}
 		});
 
 	mCommandQueue.push(command);
@@ -289,6 +295,7 @@ sf::FloatRect World::getViewBounds() const
 
 sf::FloatRect World::getBattlefieldBounds() const
 {
+	// Return view bounds + some area at top, where enemies spawn
 	sf::FloatRect bounds = getViewBounds();
 	bounds.top -= 100.f;
 	bounds.height += 100.f;

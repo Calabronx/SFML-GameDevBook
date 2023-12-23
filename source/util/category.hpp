@@ -1,14 +1,13 @@
 #pragma once
-
 #ifndef  CATEGORY_HPP
 #define	 CATEGORY_HPP
 
+// Entity/scene node category, used to dispatch commands
 namespace Category
 {
 	enum Type
 	{
-		None					= 0,
-		Scene				= 1 << 0,
+		None						= 0,
 		SceneAirLayer		= 1 << 0,
 		PlayerAircraft		= 1 << 1,
 		AlliedAircraft		= 1 << 2,
@@ -18,7 +17,7 @@ namespace Category
 		EnemyProjectile		= 1 << 6,
 
 		Aircraft = PlayerAircraft | AlliedAircraft | EnemyAircraft,
-		Projectile = AlliedAircraft | EnemyAircraft,
+		Projectile = AlliedProjectile | EnemyProjectile,
 	};
 }
 

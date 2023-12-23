@@ -5,11 +5,13 @@
 #include"../util/DataTables.hpp"
 #include "../util/StringHelpers.hpp"
 #include "pickup.hpp"
+#include <iostream>
 
 
 namespace
 {
 	const std::vector<AircraftData> Table = initializeAircraftData();
+	std::vector<int> vecBullets;
 }
 
 Textures::ID toTextureID(Aircraft::Type type) {
@@ -226,23 +228,25 @@ void Aircraft::checkProjectileLaunch(sf::Time dt, CommandQueue& commands)
 void Aircraft::createBullets(SceneNode& node, const TextureHolder& textures) const
 {
 	Projectile::Type type = isAllied() ? Projectile::AlliedBullet : Projectile::EnemyBullet;
+	vecBullets.push_back(1);
+	std::cout << vecBullets.size() << std::endl;
 
 	switch (mSpreadLevel)
 	{
-	case 1:
-		createProjectile(node, type, 0.0f, 0.5f, textures);
-		break;
+		case 1:
+			createProjectile(node, type, 0.0f, 0.5f, textures);
+			break;
 
-	case 2:
-		createProjectile(node, type, -0.33f, 0.33f, textures);
-		createProjectile(node, type, +0.33f, 0.33f, textures);
-		break;
+		case 2:
+			createProjectile(node, type, -0.33f, 0.33f, textures);
+			createProjectile(node, type, +0.33f, 0.33f, textures);
+			break;
 
-	case 3:
-		createProjectile(node, type, -0.5f, 0.33f, textures);
-		createProjectile(node, type, 0.0f, 0.5f, textures);
-		createProjectile(node, type, +0.5f, 0.33f, textures);
-		break;
+		case 3:
+			createProjectile(node, type, -0.5f, 0.33f, textures);
+			createProjectile(node, type, 0.0f, 0.5f, textures);
+			createProjectile(node, type, +0.5f, 0.33f, textures);
+			break;
 	}
 }
 

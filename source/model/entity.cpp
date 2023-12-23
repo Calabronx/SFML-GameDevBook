@@ -1,4 +1,5 @@
 #include "entity.hpp"
+#include <iostream>
 
 
 Entity::Entity(int hitpoints)
@@ -24,6 +25,7 @@ void Entity::damage(int points)
 void Entity::destroy()
 {
 	mHitpoints = 0;
+	std::cout << "destroyed" << std::endl;
 }
 
 int Entity::getHitpoints() const

@@ -20,8 +20,7 @@ public:
 	typedef std::pair<SceneNode*, SceneNode*> Pair;
 
 public:
-	SceneNode();
-	SceneNode(Category::Type category);
+	SceneNode(Category::Type category = Category::None);
 	void attachChild(Ptr child);
 	void update(sf::Time dt, CommandQueue& commands);
 	Ptr  detachChild(const SceneNode& node);

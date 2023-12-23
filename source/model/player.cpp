@@ -100,7 +100,6 @@ bool Player::isRealTimeAction(Action action)
 		case MoveDown:
 		case MoveUp:
 		case Fire:
-			std::cout << "event " << std::endl;
 				return true;
 
 		default:

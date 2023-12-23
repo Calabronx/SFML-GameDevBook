@@ -5,12 +5,6 @@
 #include "../input/Command.hpp"
 #include "utility.hpp"
 
-SceneNode::SceneNode()
-	: mChildren()
-	, mParent(nullptr)
-{
-}
-
 SceneNode::SceneNode(Category::Type category)
 	: mChildren()
 	, mParent(nullptr)
@@ -107,11 +101,6 @@ void SceneNode::checkSceneCollision(SceneNode& sceneGraph, std::set<Pair>& colli
 		checkSceneCollision(*child, collisionPairs);
 }
 
-//bool SceneNode::collision(const SceneNode& lhs, const SceneNode& rhs)
-//{
-//	return lhs.getBoundingRect().intersects(rhs.getBoundingRect());
-//}
-
 sf::Vector2f SceneNode::getWorldPosition() const
 {
 	return getWorldTransform() * sf::Vector2f();
@@ -157,7 +146,7 @@ bool SceneNode::isDestroyed() const
 
 unsigned int SceneNode::getCategory() const
 {
-	return Category::Scene;
+	return mDefaultCategory;
 }
 
 sf::Transform SceneNode::getWorldTransform() const
