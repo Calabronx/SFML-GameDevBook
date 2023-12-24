@@ -141,6 +141,9 @@
     <ClInclude Include="source\model\pickup.hpp">
       <Filter>Source Files\AircraftGame\model</Filter>
     </ClInclude>
+    <ClInclude Include="source\util\game_over_state.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\util\resource_holder.inl">
@@ -235,6 +238,9 @@
     </ClCompile>
     <ClCompile Include="source\model\pickup.cpp">
       <Filter>Source Files\AircraftGame\model</Filter>
+    </ClCompile>
+    <ClCompile Include="source\util\game_over_state.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

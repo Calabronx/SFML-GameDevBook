@@ -51,7 +51,7 @@ Aircraft::Aircraft(Type type, const TextureHolder& textures, const FontHolder& f
 {
 	centerOrigin(mSprite);
 
-	mFireCommand.category = Category::SceneAirLayer;
+ 	mFireCommand.category = Category::SceneAirLayer;
 	mFireCommand.action = [this, &textures](SceneNode& node, sf::Time)
 	{
 		createBullets(node, textures);

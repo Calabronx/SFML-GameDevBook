@@ -6,6 +6,7 @@
 #include "../util/menu_state.h"
 #include "../util/pause_state.hpp"
 #include "../util/settings_state.hpp"
+#include "../util/game_over_state.hpp"
 
 const sf::Time Application::TimePerFrame = sf::seconds(1.f / 60.f);
 
@@ -110,4 +111,5 @@ void Application::registerStates()
 	mStateStack.registerState<GameState>(States::Game);
 	mStateStack.registerState<PauseState>(States::Pause);
 	mStateStack.registerState<SettingsState>(States::Settings);
+	mStateStack.registerState<GameOverState>(States::GameOver);
 }

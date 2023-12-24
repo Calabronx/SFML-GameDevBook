@@ -268,6 +268,11 @@ bool World::hasAlivePlayer() const
 	return !mPlayerAircraft->isMarkedForRemoval();
 }
 
+bool World::hasPlayerReachedEnd() const
+{
+	return !mWorldBounds.contains(mPlayerAircraft->getPosition());
+}
+
 bool World::matchesCategories(SceneNode::Pair& colliders, Category::Type type1, Category::Type type2)
 {
 	unsigned int category1 = colliders.first->getCategory();

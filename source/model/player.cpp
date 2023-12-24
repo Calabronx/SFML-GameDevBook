@@ -23,6 +23,7 @@ struct AircraftMover
 };
 
 Player::Player()
+	: mCurrentMissionStatus(MissionRunning)
 {
 	mKeyBinding[sf::Keyboard::Left]	 = MoveLeft;
 	mKeyBinding[sf::Keyboard::Right] = MoveRight;
@@ -68,6 +69,16 @@ void Player::assignKey(Action action, sf::Keyboard::Key key)
 
 	// Insert new binding
 	mKeyBinding[key] = action;
+}
+
+void Player::setMissionStatus(MissionStatus status)
+{
+	mCurrentMissionStatus = status;
+}
+
+Player::MissionStatus Player::getMissionStatus() const
+{
+	return mCurrentMissionStatus;
 }
 
 void Player::initializeActions()

@@ -22,7 +22,10 @@ public:
 	explicit								World(sf::RenderWindow& window, FontHolder& fonts);
 	void								update(sf::Time dt);
 	void								draw();
-	CommandQueue& getCommandQueue();
+	CommandQueue&					getCommandQueue();
+
+	bool								hasAlivePlayer() const;
+	bool								hasPlayerReachedEnd() const;
 
 private:
 	void								loadTextures();
@@ -36,7 +39,6 @@ private:
 	void								guideMissiles();
 	void								handleCollisions();
 
-	bool								hasAlivePlayer() const;
 	bool								matchesCategories(SceneNode::Pair& pair, Category::Type type1, Category::Type type2);
 	sf::FloatRect				getViewBounds() const;
 	sf::FloatRect				getBattlefieldBounds() const;
