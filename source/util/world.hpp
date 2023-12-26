@@ -47,8 +47,9 @@ private:
 	enum Layer
 	{
 		Background,
-		Air,
-		LayerCount
+		LowerAir,
+		UpperAir,
+		LayerCount,
 	};
 
 	struct SpawnPoint

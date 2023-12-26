@@ -5,9 +5,9 @@
 
 GUI::Button::Button(const FontHolder& fonts, const TextureHolder& textures)
     :mCallback()
-    , mNormalTexture(textures.get(Textures::ButtonNormal))
-    , mSelectedTexture(textures.get(Textures::ButtonSelected))
-    , mPressedTexture(textures.get(Textures::ButtonPressed))
+    , mNormalTexture(textures.get(Textures::Buttons))
+    , mSelectedTexture(textures.get(Textures::Buttons))
+    , mPressedTexture(textures.get(Textures::Buttons))
     , mSprite()
     , mText("", fonts.get(Fonts::Main), 16)
     , mIsToggle(false)

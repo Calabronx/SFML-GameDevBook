@@ -3,6 +3,7 @@
 #include "utility.hpp"
 #include "../model/pickup.hpp"
 #include <iostream>
+#include "particle_node.hpp"
 
 World::World(sf::RenderWindow& window, FontHolder& fonts)
 	: mWindow(window)
@@ -63,18 +64,11 @@ CommandQueue& World::getCommandQueue()
 
 void World::loadTextures()
 {
-	mTextures.load(Textures::Eagle, "Media/Textures/Eagle.png");
-	mTextures.load(Textures::Raptor, "Media/Textures/Raptor.png");
-	mTextures.load(Textures::Desert, "Media/Textures/Desert.png");
-	mTextures.load(Textures::Avenger, "Media/Textures/Avenger.png");
-
-	mTextures.load(Textures::Bullet, "Media/Textures/Bullet.png");
-	mTextures.load(Textures::Missile, "Media/Textures/Missile.png");
-
-	mTextures.load(Textures::HealthRefill, "Media/Textures/HealthRefill.png");
-	mTextures.load(Textures::MissileRefill, "Media/Textures/MissileRefill.png");
-	mTextures.load(Textures::FireSpread, "Media/Textures/FireSpread.png");
-	mTextures.load(Textures::FireRate, "Media/Textures/FireRate.png");
+	mTextures.load(Textures::Entities, "Media/Textures/Entities.png");
+	mTextures.load(Textures::Jungle, "Media/Textures/Jungle.png");
+	mTextures.load(Textures::Explosion, "Media/Textures/Explosion.png");
+	mTextures.load(Textures::Particle, "Media/Textures/Particle.png");
+	mTextures.load(Textures::FinishLine, "Media/Textures/FinishLine.png");
 }
 
 void World::buildScene()
@@ -88,21 +82,31 @@ void World::buildScene()
 		mSceneGraph.attachChild(std::move(layer));
 	}
 	// prepare the tiled background
-	sf::Texture& texture = mTextures.get(Textures::Desert);
-	sf::IntRect textureRect(mWorldBounds);
+	sf::Texture& texture = mTextures.get(Textures::Jungle);
+
 	texture.setRepeated(true);
+
+	float viewHeight = mWorldView.getSize().y;
+	sf::IntRect textureRect(mWorldBounds);
+	textureRect.height += static_cast<int>(viewHeight);
 
 	// add the background sprite to the scene
 	std::unique_ptr<SpriteNode> backgroundSprite(new SpriteNode(texture, textureRect));
-	backgroundSprite->setPosition(mWorldBounds.left, mWorldBounds.top);
+	backgroundSprite->setPosition(mWorldBounds.left, mWorldBounds.top - viewHeight);
 	mSceneLayers[Background]->attachChild(std::move(backgroundSprite));
 
 	// add players aircraft
-	std::unique_ptr<Aircraft> leader(new Aircraft(Aircraft::Eagle, mTextures, mFonts));
-	mPlayerAircraft = leader.get();
+	std::unique_ptr<Aircraft> player(new Aircraft(Aircraft::Eagle, mTextures, mFonts));
+	mPlayerAircraft = player.get();
 	mPlayerAircraft->setPosition(mSpawnPosition);
 	mPlayerAircraft->setVelocity(40.0f, mScrollSpeed);
-	mSceneLayers[Air]->attachChild(std::move(leader));
+	mSceneLayers[UpperAir]->attachChild(std::move(player));
+
+	std::unique_ptr<ParticleNode> smokeNode(new ParticleNode(Particle::Smoke, mTextures));
+	mSceneLayers[LowerAir]->attachChild(std::move(smokeNode));
+
+	std::unique_ptr<ParticleNode> propellantNode(new ParticleNode(Particle::Propellant, mTextures));
+	mSceneLayers[LowerAir]->attachChild(std::move(propellantNode));
 
 	// Add enemy aircraft
 	addEnemies();
@@ -131,7 +135,7 @@ void World::spawnEnemies()
 		enemy->setPosition(spawn.x, spawn.y);
 		enemy->setRotation(180.0f);
 
-		mSceneLayers[Air]->attachChild(std::move(enemy));
+		mSceneLayers[UpperAir]->attachChild(std::move(enemy));
 
 		mEnemySpawnPoints.pop_back();
 	}

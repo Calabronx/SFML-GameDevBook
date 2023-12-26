@@ -25,29 +25,27 @@ public:
 		TextureHolder* textures;
 		FontHolder* fonts;
 		Player* player;
-
-		Context();
 	};
 
-public:
-	State(StateStack& stack, Context context);
-	State();
-	virtual ~State();
+	public:
+						State(StateStack& stack, Context context);
+		virtual ~State();
 
-	virtual void draw() = 0;
-	virtual bool update(sf::Time dt) = 0;
-	virtual bool handleEvent(const sf::Event& event) = 0;
+		virtual void		draw() = 0;
+		virtual bool		update(sf::Time dt) = 0;
+		virtual bool		handleEvent(const sf::Event& event) = 0;
 
-protected:
-	void requestStackPush(States::ID stateID);
-	void requestStackPop();
-	void requestStateClear();
+	protected:
+		void					requestStackPush(States::ID stateID);
+		void					requestStackPop();
+		void					requestStateClear();
 
-	Context getContext() const;
+		Context					getContext() const;
 
-private:
-	StateStack* mStack;
-	Context		mContext;
+	private:
+		StateStack*				mStack;
+		Context					mContext;
 };
+
 #endif // !STATE_HPP
 

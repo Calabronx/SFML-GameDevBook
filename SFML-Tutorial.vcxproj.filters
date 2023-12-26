@@ -144,6 +144,15 @@
     <ClInclude Include="source\util\game_over_state.hpp">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClInclude>
+    <ClInclude Include="source\util\particle.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
+    <ClInclude Include="source\util\particle_node.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
+    <ClInclude Include="source\util\emitter_node.h">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\util\resource_holder.inl">
@@ -240,6 +249,15 @@
       <Filter>Source Files\AircraftGame\model</Filter>
     </ClCompile>
     <ClCompile Include="source\util\game_over_state.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClCompile>
+    <ClCompile Include="source\util\particle.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClCompile>
+    <ClCompile Include="source\util\particle_node.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClCompile>
+    <ClCompile Include="source\util\emitter_node.cpp">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClCompile>
   </ItemGroup>

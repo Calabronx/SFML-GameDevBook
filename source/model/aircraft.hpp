@@ -24,7 +24,7 @@ public:
 
 public:
 	float				getMaxSpeed() const;
-	explicit							Aircraft(Type type, const TextureHolder& textures, const FontHolder& fonts);
+												Aircraft(Type type, const TextureHolder& textures, const FontHolder& fonts);
 	void				 fire();
 	void				 launchMissile();
 	virtual	sf::FloatRect getBoundingRect() const;

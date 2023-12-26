@@ -14,16 +14,16 @@ namespace
 	std::vector<int> vecBullets;
 }
 
-Textures::ID toTextureID(Aircraft::Type type) {
-	switch (type)
-	{
-	case Aircraft::Eagle:
-		return Textures::Eagle;
-	case Aircraft::Raptor:
-		return Textures::Raptor;
-	}
-	return Textures::Eagle;
-}
+//Textures::ID toTextureID(Aircraft::Type type) {
+//	switch (type)
+//	{
+//	case Aircraft::Eagle:
+//		return Textures::Eagle;
+//	case Aircraft::Raptor:
+//		return Textures::Raptor;
+//	}
+//	return Textures::Eagle;
+//}
 
 float Aircraft::getMaxSpeed() const
 {
@@ -33,7 +33,7 @@ float Aircraft::getMaxSpeed() const
 Aircraft::Aircraft(Type type, const TextureHolder& textures, const FontHolder& fonts)
 	:Entity(Table[type].hitpoints)
 	, mType(type)
-	, mSprite(textures.get(Table[type].texture))
+	, mSprite(textures.get(Table[type].texture), Table[type].textureRect)
 	, mFireCommand()
 	, mMissileCommand()
 	, mFireCountdown(sf::Time::Zero)
