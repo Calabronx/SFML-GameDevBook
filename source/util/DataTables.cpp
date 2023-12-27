@@ -3,6 +3,8 @@
 #include "../model/projectile.hpp"
 #include "../model/pickup.hpp"
 #include "particle.hpp"
+
+
 using namespace std::placeholders;
 
 std::vector<AircraftData> initializeAircraftData()
@@ -66,7 +68,7 @@ std::vector<PickupData> initializePickupData()
 	std::vector<PickupData> data(Pickup::TypeCount);
 
 	data[Pickup::HealthRefill].texture	= Textures::Entities;
-	data[Pickup::HealthRefill].textureRect = sf::IntRect(0, 64, 40, 40);
+	data[Pickup::HealthRefill].textureRect = sf::IntRect(0, 1000, 40, 40);
 	data[Pickup::HealthRefill].action	= [](Aircraft& a) { a.repair(25);};
 
 	data[Pickup::MissileRefill].texture	= Textures::Entities;

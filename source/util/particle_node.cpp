@@ -36,6 +36,7 @@ void ParticleNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states
 	}
 
 	states.texture = &mTexture;
+
 	target.draw(mVertexArray, states);
 }
 

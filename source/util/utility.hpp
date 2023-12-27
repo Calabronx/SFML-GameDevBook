@@ -7,6 +7,7 @@
 #include <sstream>
 #include <string>
 #include "scene_node.hpp"
+#include "animation.hpp"
 
 namespace sf {
 	class Sprite;
@@ -18,6 +19,7 @@ std::string toString(const T& value);
 
 void		 centerOrigin(sf::Sprite& sprite);
 void		 centerOrigin(sf::Text& text);
+void		 centerOrigin(Animation& animation);
 float		 toRadian(float degree);
 float		 length(sf::Vector2f vector);
 float		 toDegree(float radian);

@@ -9,6 +9,7 @@
 #include "../util/text_node.hpp"
 #include "../input/command_queue.h"
 #include "projectile.hpp"
+#include "../util/animation.hpp"
 
 
 class Aircraft : public Entity
@@ -47,16 +48,20 @@ private:
 	void		 createProjectile(SceneNode& node, Projectile::Type type, float xOffset, float yOffset, const TextureHolder& textures) const;
 	void		 createPickup(SceneNode& node, const TextureHolder& textures) const;
 	void		 checkPickupDrop(CommandQueue& commands);
+	void		 remove();
 
 	bool isAllied() const;
 private:
 	Type			mType;
 	sf::Sprite		mSprite;
+	Animation		mExplosion;
 	float		    mTravelledDistance;
 	float		    mFireRateLevel;
 	std::size_t		mDirectionIndex;
 	bool			mIsFiring;
 	bool			mIsLaunchingMissile;
+	bool			mShowExplosion;
+	bool			mSpawnedPickup;
 	bool			mIsMarkedForRemoval;
 
 	int					mSpreadLevel;

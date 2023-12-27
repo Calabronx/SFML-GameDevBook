@@ -28,6 +28,11 @@ void Entity::destroy()
 	std::cout << "destroyed" << std::endl;
 }
 
+void Entity::remove()
+{
+	destroy();
+}
+
 int Entity::getHitpoints() const
 {
 	return mHitpoints;

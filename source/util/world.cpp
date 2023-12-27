@@ -19,6 +19,8 @@ World::World(sf::RenderWindow& window, FontHolder& fonts)
 	, mEnemySpawnPoints()
 	, mActiveEnemies()
 {
+	//mSceneTexture.create(mTarget.getSize().x, mTarget.getSize().y); // completar impl
+
 	loadTextures();
 	buildScene();
 

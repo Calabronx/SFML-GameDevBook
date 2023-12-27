@@ -29,6 +29,7 @@
     <ClInclude Include="source\model\pickup.hpp" />
     <ClInclude Include="source\model\player.h" />
     <ClInclude Include="source\model\projectile.hpp" />
+    <ClInclude Include="source\util\animation.hpp" />
     <ClInclude Include="source\util\category.hpp" />
     <ClInclude Include="source\util\DataTables.hpp" />
     <ClInclude Include="source\util\emitter_node.h" />
@@ -70,6 +71,7 @@
     <ClCompile Include="source\model\pickup.cpp" />
     <ClCompile Include="source\model\player.cpp" />
     <ClCompile Include="source\model\projectile.cpp" />
+    <ClCompile Include="source\util\animation.cpp" />
     <ClCompile Include="source\util\DataTables.cpp" />
     <ClCompile Include="source\util\emitter_node.cpp" />
     <ClCompile Include="source\util\game_over_state.cpp" />

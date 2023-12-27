@@ -25,6 +25,8 @@ public:
 	void			repair(int points);
 	void			damage(int points);
 	void			destroy();
+	virtual void remove();
+
 	virtual void updateCurrent(sf::Time dt, CommandQueue& commands);
 public:
 	sf::Vector2f mVelocity;

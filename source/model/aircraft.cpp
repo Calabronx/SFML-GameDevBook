@@ -14,17 +14,6 @@ namespace
 	std::vector<int> vecBullets;
 }
 
-//Textures::ID toTextureID(Aircraft::Type type) {
-//	switch (type)
-//	{
-//	case Aircraft::Eagle:
-//		return Textures::Eagle;
-//	case Aircraft::Raptor:
-//		return Textures::Raptor;
-//	}
-//	return Textures::Eagle;
-//}
-
 float Aircraft::getMaxSpeed() const
 {
 	return Table[mType].speed;
@@ -34,11 +23,14 @@ Aircraft::Aircraft(Type type, const TextureHolder& textures, const FontHolder& f
 	:Entity(Table[type].hitpoints)
 	, mType(type)
 	, mSprite(textures.get(Table[type].texture), Table[type].textureRect)
+	, mExplosion(textures.get(Textures::Explosion))
 	, mFireCommand()
 	, mMissileCommand()
 	, mFireCountdown(sf::Time::Zero)
 	, mIsFiring(false)
 	, mIsLaunchingMissile(false)
+	, mShowExplosion(true)
+	, mSpawnedPickup(false)
 	, mIsMarkedForRemoval(false)
 	, mFireRateLevel(1)
 	, mSpreadLevel(1)
@@ -49,7 +41,12 @@ Aircraft::Aircraft(Type type, const TextureHolder& textures, const FontHolder& f
 	, mHealthDisplay(nullptr)
 	, mMissileDisplay(nullptr)
 {
+	mExplosion.setFrameSize(sf::Vector2i(256, 256));
+	mExplosion.setNumFrames(16);
+	mExplosion.setDuration(sf::seconds(1));
+
 	centerOrigin(mSprite);
+	centerOrigin(mExplosion);
 
  	mFireCommand.category = Category::SceneAirLayer;
 	mFireCommand.action = [this, &textures](SceneNode& node, sf::Time)
@@ -109,7 +106,7 @@ sf::FloatRect Aircraft::getBoundingRect() const
 
 bool Aircraft::isMarkedForRemoval() const
 {
-	return mIsMarkedForRemoval;
+	return isDestroyed() && (mExplosion.isFinished() || !mShowExplosion);
 }
 
 void Aircraft::increaseFireRate()
@@ -143,7 +140,10 @@ unsigned int Aircraft::getCategory() const
 
 void Aircraft::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	target.draw(mSprite, states);
+	if (isDestroyed() && mShowExplosion)
+		target.draw(mExplosion, states);
+	else
+		target.draw(mSprite, states);
 }
 
 void Aircraft::updateTexts()
@@ -187,9 +187,12 @@ void Aircraft::updateCurrent(sf::Time dt, CommandQueue& commands)
 		checkPickupDrop(commands);
 
 		mIsMarkedForRemoval = true;
+		mExplosion.update(dt);
 		return;
 	}
+
 	checkProjectileLaunch(dt, commands);
+
 	updateMovementPattern(dt);
 	Entity::updateCurrent(dt, commands);
 
@@ -275,11 +278,21 @@ void Aircraft::createPickup(SceneNode& node, const TextureHolder& textures) cons
 
 void Aircraft::checkPickupDrop(CommandQueue& commands)
 {
-	if (!isAllied() && randomInt(3) == 0)
+	if (!isAllied() && randomInt(3) == 0 && !mSpawnedPickup)
 		commands.push(mDropPickupCommand);
+
+	mSpawnedPickup = true;
+}
+
+void Aircraft::remove()
+{
+	Entity::remove();
+	mShowExplosion = false;
 }
 
 bool Aircraft::isAllied() const
 {
 	return mType == Eagle;
 }
+
+
