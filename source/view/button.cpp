@@ -5,14 +5,12 @@
 
 GUI::Button::Button(const FontHolder& fonts, const TextureHolder& textures)
     :mCallback()
-    , mNormalTexture(textures.get(Textures::Buttons))
-    , mSelectedTexture(textures.get(Textures::Buttons))
-    , mPressedTexture(textures.get(Textures::Buttons))
-    , mSprite()
+    , mSprite(textures.get(Textures::Buttons))
     , mText("", fonts.get(Fonts::Main), 16)
     , mIsToggle(false)
 {
-    mSprite.setTexture(mNormalTexture);
+    //mSprite.setTexture(mNormalTexture);
+    changeTexture(Normal);
 
     sf::FloatRect bounds = mSprite.getLocalBounds();
     mText.setPosition(bounds.width / 2.0f, bounds.height / 2.0f);
@@ -43,13 +41,15 @@ void GUI::Button::setToggle(bool flag)
 void GUI::Button::select()
 {
     Component::select();
-    mSprite.setTexture(mSelectedTexture);
+    //mSprite.setTexture(mSelectedTexture);
+    changeTexture(Selected);
 }
 
 void GUI::Button::deselect()
 {
     Component::deselect();
-    mSprite.setTexture(mNormalTexture);
+    //mSprite.setTexture(mNormalTexture);
+    changeTexture(Normal);
 }
 
 void GUI::Button::activate()
@@ -57,7 +57,8 @@ void GUI::Button::activate()
     Component::activate();
 
     if (mIsToggle)
-        mSprite.setTexture(mPressedTexture);
+        //mSprite.setTexture(mPressedTexture);
+        changeTexture(Pressed);
 
     if (mCallback)
         mCallback();
@@ -69,13 +70,16 @@ void GUI::Button::activate()
 void GUI::Button::deactivate()
 {
     Component::deactivate();
+
     if (mIsToggle)
     {
         // reset texture to right one depending on if we are selected or not
         if (isSelected())
-            mSprite.setTexture(mSelectedTexture);
+            //mSprite.setTexture(mSelectedTexture);
+            changeTexture(Selected);
         else
-            mSprite.setTexture(mNormalTexture);
+            //mSprite.setTexture(mNormalTexture);
+            changeTexture(Normal);
     }
 }
 
@@ -88,4 +92,10 @@ void GUI::Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
     states.transform *= getTransform();
     target.draw(mSprite, states);
     target.draw(mText, states);
+}
+
+void GUI::Button::changeTexture(Type buttonType)
+{
+    sf::IntRect textureRect(0, 50 * buttonType, 200, 50);
+    mSprite.setTextureRect(textureRect);
 }

@@ -180,8 +180,30 @@ void Aircraft::updateMovementPattern(sf::Time dt)
 	}
 }
 
+void Aircraft::updateRollAnimation()
+{
+	if (Table[mType].hasRollAnimation)
+	{
+		sf::IntRect textureRect = Table[mType].textureRect;
+
+		// Roll left: Texture rect offset once
+		if (getVelocity().x < 0.f)
+			textureRect.left += textureRect.width;
+
+		// Roll right: Texture rect offset twice
+		else if (getVelocity().x > 0.f)
+			textureRect.left += 2 * textureRect.width;
+
+		mSprite.setTextureRect(textureRect);
+	}
+}
+
 void Aircraft::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
+	updateTexts();
+	updateRollAnimation();
+
+
 	if (isDestroyed())
 	{
 		checkPickupDrop(commands);
@@ -196,7 +218,6 @@ void Aircraft::updateCurrent(sf::Time dt, CommandQueue& commands)
 	updateMovementPattern(dt);
 	Entity::updateCurrent(dt, commands);
 
-	updateTexts();
 
 }
 

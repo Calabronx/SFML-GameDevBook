@@ -19,7 +19,7 @@ namespace sf {
 
 class World : private sf::NonCopyable {
 public:
-	explicit								World(sf::RenderWindow& window, FontHolder& fonts);
+	explicit								World(sf::RenderTarget& outputTarget, FontHolder& fonts);
 	void								update(sf::Time dt);
 	void								draw();
 	CommandQueue&					getCommandQueue();
@@ -67,12 +67,14 @@ private:
 	};
 
 private:
-	sf::RenderWindow&					mWindow;
-	sf::View							mWorldView;
+	sf::RenderTarget&					mTarget;
+	sf::RenderTexture					mSceneTexture;
+	sf::View									mWorldView;
+	//sf::RenderWindow&					mWindow;
 	TextureHolder						mTextures;
-	FontHolder&							mFonts;
+	FontHolder&									mFonts;
 
-	SceneNode							mSceneGraph;
+	SceneNode									mSceneGraph;
 	std::array<SceneNode*, LayerCount>	mSceneLayers;
 
 	sf::FloatRect						mWorldBounds;

@@ -30,6 +30,7 @@
     <ClInclude Include="source\model\player.h" />
     <ClInclude Include="source\model\projectile.hpp" />
     <ClInclude Include="source\util\animation.hpp" />
+    <ClInclude Include="source\util\bloom_effect.hpp" />
     <ClInclude Include="source\util\category.hpp" />
     <ClInclude Include="source\util\DataTables.hpp" />
     <ClInclude Include="source\util\emitter_node.h" />
@@ -41,6 +42,7 @@
     <ClInclude Include="source\util\particle.hpp" />
     <ClInclude Include="source\util\particle_node.hpp" />
     <ClInclude Include="source\util\pause_state.hpp" />
+    <ClInclude Include="source\util\post_effect.hpp" />
     <ClInclude Include="source\util\ResourceIdentifiers.hpp" />
     <ClInclude Include="source\util\scene_node.hpp" />
     <ClInclude Include="source\util\settings_state.hpp" />
@@ -72,6 +74,7 @@
     <ClCompile Include="source\model\player.cpp" />
     <ClCompile Include="source\model\projectile.cpp" />
     <ClCompile Include="source\util\animation.cpp" />
+    <ClCompile Include="source\util\bloom_effect.cpp" />
     <ClCompile Include="source\util\DataTables.cpp" />
     <ClCompile Include="source\util\emitter_node.cpp" />
     <ClCompile Include="source\util\game_over_state.cpp" />
@@ -82,6 +85,7 @@
     <ClCompile Include="source\util\particle.cpp" />
     <ClCompile Include="source\util\particle_node.cpp" />
     <ClCompile Include="source\util\pause_state.cpp" />
+    <ClCompile Include="source\util\post_effect.cpp" />
     <ClCompile Include="source\util\resource_holder.inl" />
     <ClCompile Include="source\util\scene_node.cpp" />
     <ClCompile Include="source\util\settings_state.cpp" />

@@ -42,6 +42,7 @@ private:
 	void		 updateTexts();
 	void		 updateMovementPattern(sf::Time dt);
 	void	     updateCurrent(sf::Time dt, CommandQueue& commands);
+	void		 updateRollAnimation();
 	void		 checkProjectileLaunch(sf::Time dt, CommandQueue& commands);
 
 	void		 createBullets(SceneNode& node, const TextureHolder& textures) const;

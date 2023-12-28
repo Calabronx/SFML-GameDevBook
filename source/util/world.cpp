@@ -4,10 +4,13 @@
 #include "../model/pickup.hpp"
 #include <iostream>
 #include "particle_node.hpp"
+#include "post_effect.hpp"
 
-World::World(sf::RenderWindow& window, FontHolder& fonts)
-	: mWindow(window)
-	, mWorldView(window.getDefaultView())
+World::World(sf::RenderTarget& outputTarget, FontHolder& fonts)
+	: mTarget(outputTarget)
+	, mSceneTexture()
+	//, mWindow(window)
+	, mWorldView(outputTarget.getDefaultView())
 	, mFonts(fonts)
 	, mTextures()
 	, mSceneGraph()
@@ -20,6 +23,7 @@ World::World(sf::RenderWindow& window, FontHolder& fonts)
 	, mActiveEnemies()
 {
 	//mSceneTexture.create(mTarget.getSize().x, mTarget.getSize().y); // completar impl
+	mSceneTexture.create(mTarget.getSize().x, mTarget.getSize().y);
 
 	loadTextures();
 	buildScene();
@@ -55,8 +59,20 @@ void World::update(sf::Time dt)
 
 void World::draw()
 {
-	mWindow.setView(mWorldView);
-	mWindow.draw(mSceneGraph);
+	if (PostEffect::isSupported())
+	{
+		mSceneTexture.clear();
+		mSceneTexture.setView(mWorldView);
+		mSceneTexture.draw(mSceneGraph);
+		mSceneTexture.display();
+		mBloomEffect.apply(mSceneTexture, mTarget);
+	}
+	else {
+		mTarget.setView(mWorldView);
+		mTarget.draw(mSceneGraph);
+	}
+	//mWindow.setView(mWorldView);
+	//mWindow.draw(mSceneGraph);
 }
 
 CommandQueue& World::getCommandQueue()

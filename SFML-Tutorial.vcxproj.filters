@@ -156,6 +156,12 @@
     <ClInclude Include="source\util\animation.hpp">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClInclude>
+    <ClInclude Include="source\util\post_effect.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
+    <ClInclude Include="source\util\bloom_effect.hpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\util\resource_holder.inl">
@@ -264,6 +270,12 @@
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClCompile>
     <ClCompile Include="source\util\animation.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClCompile>
+    <ClCompile Include="source\util\post_effect.cpp">
+      <Filter>Source Files\AircraftGame\util</Filter>
+    </ClCompile>
+    <ClCompile Include="source\util\bloom_effect.cpp">
       <Filter>Source Files\AircraftGame\util</Filter>
     </ClCompile>
   </ItemGroup>
