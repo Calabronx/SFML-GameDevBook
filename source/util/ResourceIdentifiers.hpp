@@ -1,34 +1,20 @@
 #ifndef RESOURCEIDENTIFIERS_HPP
 #define RESOURCEIDENTIFIERS_HPP
 
-#include<SFML/Graphics.hpp>
-
+//#include<SFML/Graphics.hpp>
 
 // Forward declaration of SFML classes
 namespace sf
 {
 	class Texture;
 	class Font;
+	class Shader;
 }
 
 namespace Textures
 {
 	enum ID
 	{
-		/*Eagle,
-		Raptor,
-		Desert,
-		Avenger,
-		TitleScreen,
-		ButtonNormal,
-		ButtonSelected,
-		ButtonPressed,
-		Bullet,
-		Missile,
-		HealthRefill,
-		MissileRefill,
-		FireSpread,
-		FireRate*/
 		Entities,
 		Jungle,
 		TitleScreen,

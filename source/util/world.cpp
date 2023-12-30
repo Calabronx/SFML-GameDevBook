@@ -9,7 +9,6 @@
 World::World(sf::RenderTarget& outputTarget, FontHolder& fonts)
 	: mTarget(outputTarget)
 	, mSceneTexture()
-	//, mWindow(window)
 	, mWorldView(outputTarget.getDefaultView())
 	, mFonts(fonts)
 	, mTextures()
@@ -71,8 +70,6 @@ void World::draw()
 		mTarget.setView(mWorldView);
 		mTarget.draw(mSceneGraph);
 	}
-	//mWindow.setView(mWorldView);
-	//mWindow.draw(mSceneGraph);
 }
 
 CommandQueue& World::getCommandQueue()

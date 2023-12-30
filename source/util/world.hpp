@@ -10,11 +10,12 @@
 #include "sprite_node.hpp"
 #include "../model/aircraft.hpp"
 #include "../input/command_queue.h"
+#include "bloom_effect.hpp"
 
 #include <array>
 
 namespace sf {
-	class RenderWindow;
+	class RenderTarget;
 }
 
 class World : private sf::NonCopyable {
@@ -70,7 +71,6 @@ private:
 	sf::RenderTarget&					mTarget;
 	sf::RenderTexture					mSceneTexture;
 	sf::View									mWorldView;
-	//sf::RenderWindow&					mWindow;
 	TextureHolder						mTextures;
 	FontHolder&									mFonts;
 
@@ -85,6 +85,8 @@ private:
 
 	std::vector <SpawnPoint>		mEnemySpawnPoints;
 	std::vector <Aircraft*>			mActiveEnemies;
+
+	BloomEffect						mBloomEffect;
 
 };
 

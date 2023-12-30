@@ -25,9 +25,6 @@
     <Filter Include="Source Files\Resource chapter">
       <UniqueIdentifier>{c8031034-d9bd-4424-89ba-38c09e1e51bd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\BounceApp">
-      <UniqueIdentifier>{28909ae2-5339-46b1-9894-cdb3987e7f04}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\AircraftGame\model">
       <UniqueIdentifier>{fbdae484-03ee-4806-9b46-9e8d332548a6}</UniqueIdentifier>
     </Filter>
@@ -36,6 +33,9 @@
     </Filter>
     <Filter Include="Source Files\AircraftGame\view">
       <UniqueIdentifier>{dc2ed0ba-601e-404a-8aac-067f61f9be94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\shaders">
+      <UniqueIdentifier>{c1a56b85-10b6-40e0-947a-500b4763c917}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -68,12 +68,6 @@
     </ClInclude>
     <ClInclude Include="source\model\player.h">
       <Filter>Source Files\AircraftGame\input</Filter>
-    </ClInclude>
-    <ClInclude Include="ball.h">
-      <Filter>Source Files\BounceApp</Filter>
-    </ClInclude>
-    <ClInclude Include="program.h">
-      <Filter>Source Files\BounceApp</Filter>
     </ClInclude>
     <ClInclude Include="source\util\game_state.hpp">
       <Filter>Source Files\AircraftGame\util</Filter>
@@ -191,12 +185,6 @@
     <ClCompile Include="source\model\player.cpp">
       <Filter>Source Files\AircraftGame\input</Filter>
     </ClCompile>
-    <ClCompile Include="ball.cpp">
-      <Filter>Source Files\BounceApp</Filter>
-    </ClCompile>
-    <ClCompile Include="program.cpp">
-      <Filter>Source Files\BounceApp</Filter>
-    </ClCompile>
     <ClCompile Include="source\main.cpp">
       <Filter>Source Files\AircraftGame</Filter>
     </ClCompile>
@@ -282,6 +270,21 @@
   <ItemGroup>
     <None Include="source\util\StringHelpers.inl">
       <Filter>Source Files\AircraftGame\util</Filter>
+    </None>
+    <None Include="Media\Shaders\Add.frag">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="Media\Shaders\Brightness.frag">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="Media\Shaders\DownSample.frag">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="Media\Shaders\Fullpass.vert">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="Media\Shaders\GuassianBlur.frag">
+      <Filter>Source Files\shaders</Filter>
     </None>
   </ItemGroup>
 </Project>

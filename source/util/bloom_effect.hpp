@@ -2,12 +2,11 @@
 #ifndef BLOOM_EFFECT_HPP
 #define BLOOM_EFFECT_HPP
 
-#include "post_effect.hpp"
 #include "ResourceIdentifiers.hpp"
 #include "resource_holder.hpp"
+#include "post_effect.hpp"
 
-#include <SFML/Graphics/RenderTexture.hpp>
-#include <SFML/Graphics/Shader.hpp>
+#include <SFML/Graphics.hpp>
 
 #include <array>
 
@@ -25,9 +24,9 @@ private:
 
 	void		filterBright(const sf::RenderTexture& input, sf::RenderTexture& output);
 	void		blurMultipass(RenderTextureArray& renderTextures);
-	void		blur(const sf::RenderTexture& input, sf::RenderTexture& output);
+	void		blur(const sf::RenderTexture& input, sf::RenderTexture& output, sf::Vector2f offsetFactor);
 	void		downSample(const sf::RenderTexture& input, sf::RenderTexture& output);
-	void		add(const sf::RenderTexture& source, const sf::RenderTexture& bloom, sf::RenderTarget& target);
+	void		add(const sf::RenderTexture& source, const sf::RenderTexture& bloom, sf::RenderTarget& output);
 
 private:
 	ShaderHolder			mShaders;

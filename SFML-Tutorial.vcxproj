@@ -19,8 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ball.h" />
-    <ClInclude Include="program.h" />
     <ClInclude Include="source\core\application.hpp" />
     <ClInclude Include="source\input\Command.hpp" />
     <ClInclude Include="source\input\command_queue.h" />
@@ -62,8 +60,6 @@
     <ClInclude Include="source\view\label.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ball.cpp" />
-    <ClCompile Include="program.cpp" />
     <ClCompile Include="source\core\application.cpp" />
     <ClCompile Include="source\input\command.cpp" />
     <ClCompile Include="source\input\command_queue.cpp" />
@@ -102,6 +98,11 @@
     <ClCompile Include="source\view\label.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Media\Shaders\Add.frag" />
+    <None Include="Media\Shaders\Brightness.frag" />
+    <None Include="Media\Shaders\DownSample.frag" />
+    <None Include="Media\Shaders\Fullpass.vert" />
+    <None Include="Media\Shaders\GuassianBlur.frag" />
     <None Include="source\util\StringHelpers.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
