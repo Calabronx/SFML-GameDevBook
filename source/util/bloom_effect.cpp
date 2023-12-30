@@ -1,4 +1,6 @@
 #include "bloom_effect.hpp"
+#include "resource_holder.inl"
+
 
 BloomEffect::BloomEffect()
 	: mShaders()

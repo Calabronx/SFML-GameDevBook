@@ -110,18 +110,22 @@ void World::buildScene()
 	backgroundSprite->setPosition(mWorldBounds.left, mWorldBounds.top - viewHeight);
 	mSceneLayers[Background]->attachChild(std::move(backgroundSprite));
 
-	// add players aircraft
-	std::unique_ptr<Aircraft> player(new Aircraft(Aircraft::Eagle, mTextures, mFonts));
-	mPlayerAircraft = player.get();
-	mPlayerAircraft->setPosition(mSpawnPosition);
-	mPlayerAircraft->setVelocity(40.0f, mScrollSpeed);
-	mSceneLayers[UpperAir]->attachChild(std::move(player));
+	sf::Texture& finishTexture = mTextures.get(Textures::FinishLine);
+	std::unique_ptr<SpriteNode> finishSprite(new SpriteNode(finishTexture));
+	finishSprite->setPosition(0.f, -76.f);
+	mSceneLayers[Background]->attachChild(std::move(finishSprite));
 
 	std::unique_ptr<ParticleNode> smokeNode(new ParticleNode(Particle::Smoke, mTextures));
 	mSceneLayers[LowerAir]->attachChild(std::move(smokeNode));
 
 	std::unique_ptr<ParticleNode> propellantNode(new ParticleNode(Particle::Propellant, mTextures));
 	mSceneLayers[LowerAir]->attachChild(std::move(propellantNode));
+	// add players aircraft
+	std::unique_ptr<Aircraft> player(new Aircraft(Aircraft::Eagle, mTextures, mFonts));
+	mPlayerAircraft = player.get();
+	mPlayerAircraft->setPosition(mSpawnPosition);
+	mPlayerAircraft->setVelocity(40.0f, mScrollSpeed);
+	mSceneLayers[UpperAir]->attachChild(std::move(player));
 
 	// Add enemy aircraft
 	addEnemies();
@@ -158,14 +162,33 @@ void World::spawnEnemies()
 
 void World::addEnemies()
 {
-	addEnemy(Aircraft::Raptor, 0.0f, 500.f);
-	addEnemy(Aircraft::Raptor, 0.0f, 1000.f);
-	addEnemy(Aircraft::Raptor, +100.f, 1100.f);
-	addEnemy(Aircraft::Raptor, -100.f, 1100.f);
-	addEnemy(Aircraft::Avenger, -70.f, 1400.f);
-	addEnemy(Aircraft::Avenger, -70.f, 1600.f);
-	addEnemy(Aircraft::Avenger, 70.f, 1400.f);
-	addEnemy(Aircraft::Avenger, 70.f, 1600.f);
+	// Add enemies to the spawn point container
+	addEnemy(Aircraft::Raptor, 0.f, 500.f);
+	addEnemy(Aircraft::Raptor, 0.f, 1000.f);
+	addEnemy(Aircraft::Raptor, +100.f, 1150.f);
+	addEnemy(Aircraft::Raptor, -100.f, 1150.f);
+	addEnemy(Aircraft::Avenger, 70.f, 1500.f);
+	addEnemy(Aircraft::Avenger, -70.f, 1500.f);
+	addEnemy(Aircraft::Avenger, -70.f, 1710.f);
+	addEnemy(Aircraft::Avenger, 70.f, 1700.f);
+	addEnemy(Aircraft::Avenger, 30.f, 1850.f);
+	addEnemy(Aircraft::Raptor, 300.f, 2200.f);
+	addEnemy(Aircraft::Raptor, -300.f, 2200.f);
+	addEnemy(Aircraft::Raptor, 0.f, 2200.f);
+	addEnemy(Aircraft::Raptor, 0.f, 2500.f);
+	addEnemy(Aircraft::Avenger, -300.f, 2700.f);
+	addEnemy(Aircraft::Avenger, -300.f, 2700.f);
+	addEnemy(Aircraft::Raptor, 0.f, 3000.f);
+	addEnemy(Aircraft::Raptor, 250.f, 3250.f);
+	addEnemy(Aircraft::Raptor, -250.f, 3250.f);
+	addEnemy(Aircraft::Avenger, 0.f, 3500.f);
+	addEnemy(Aircraft::Avenger, 0.f, 3700.f);
+	addEnemy(Aircraft::Raptor, 0.f, 3800.f);
+	addEnemy(Aircraft::Avenger, 0.f, 4000.f);
+	addEnemy(Aircraft::Avenger, -200.f, 4200.f);
+	addEnemy(Aircraft::Raptor, 200.f, 4200.f);
+	addEnemy(Aircraft::Raptor, 0.f, 4400.f);
+
 
 	// sort all enemies according to ther y value, such that lower enemies are checked first for spawning
 	std::sort(mEnemySpawnPoints.begin(), mEnemySpawnPoints.end(), [](SpawnPoint lhs, SpawnPoint rhs)

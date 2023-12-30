@@ -13,7 +13,7 @@ TitleState::TitleState(StateStack& stack, Context context)
 	mText.setFont(context.fonts->get(Fonts::Main));
 	mText.setString("Press any key to start");
 	centerOrigin(mText);
-	mText.setPosition(context.window->getView().getSize() / 2.0f);
+	mText.setPosition(sf::Vector2f(context.window->getSize() / 2u));
 
 }
 

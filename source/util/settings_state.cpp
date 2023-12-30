@@ -14,6 +14,8 @@ SettingsState::SettingsState(StateStack& stack, Context context)
 	addButtonLabel(Player::MoveRight, 200.0f, "Move Right", context);
 	addButtonLabel(Player::MoveUp, 250.0f,	  "Move Up", context);
 	addButtonLabel(Player::MoveDown, 300.0f,  "Move Down", context);
+	addButtonLabel(Player::Fire, 500.0f,  "Fire", context);
+	addButtonLabel(Player::LaunchMissile, 550.0f,  "Missile", context);
 
 	updateLabels();
 
