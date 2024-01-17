@@ -91,7 +91,9 @@ void World::buildScene()
 	// initialize the different layers
 	for (std::size_t i = 0; i < LayerCount; ++i)
 	{
-		SceneNode::Ptr layer(new SceneNode());
+		Category::Type category = (i == LowerAir) ? Category::SceneAirLayer : Category::None;
+
+		SceneNode::Ptr layer(new SceneNode(category));
 		mSceneLayers[i] = layer.get();
 
 		mSceneGraph.attachChild(std::move(layer));

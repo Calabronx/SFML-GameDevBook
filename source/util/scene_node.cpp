@@ -4,6 +4,7 @@
 #include "../util/category.hpp"
 #include "../input/Command.hpp"
 #include "utility.hpp"
+#include <iostream>
 
 SceneNode::SceneNode(Category::Type category)
 	: mChildren()
@@ -127,7 +128,9 @@ sf::FloatRect SceneNode::getBoundingRect() const
 void SceneNode::onCommand(const Command& command, sf::Time dt)
 {
 	if (command.category & getCategory())
+		//std::cout << "category: true" << std::endl;
 		command.action(*this, dt);
+
 
 	for (Ptr& child : mChildren)
 		child->onCommand(command, dt);

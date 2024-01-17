@@ -20,7 +20,7 @@ public:
 	typedef std::pair<SceneNode*, SceneNode*> Pair;
 
 public:
-	SceneNode(Category::Type category = Category::SceneAirLayer); // deberia ser None al iniciar, pero deja de disparar
+	explicit SceneNode(Category::Type category = Category::None); // deberia ser None al iniciar, pero deja de disparar
 	void attachChild(Ptr child);
 	void update(sf::Time dt, CommandQueue& commands);
 	Ptr  detachChild(const SceneNode& node);
