@@ -3,10 +3,11 @@
 #include "../util/resource_holder.hpp"
 #include "../util/resource_holder.inl"
 
-GUI::Button::Button(const FontHolder& fonts, const TextureHolder& textures)
+GUI::Button::Button(State::Context context)
     :mCallback()
-    , mSprite(textures.get(Textures::Buttons))
-    , mText("", fonts.get(Fonts::Main), 16)
+    , mSprite(context.textures->get(Textures::Buttons))
+    , mText("", context.fonts->get(Fonts::Main), 16)
+    , mSounds(*context.sounds)
     , mIsToggle(false)
 {
     //mSprite.setTexture(mNormalTexture);
@@ -65,6 +66,8 @@ void GUI::Button::activate()
 
     if (!mIsToggle)
         deactivate();
+
+    mSounds.play(SoundEffect::Button);
 }
 
 void GUI::Button::deactivate()

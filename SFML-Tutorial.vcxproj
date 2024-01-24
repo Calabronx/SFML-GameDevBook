@@ -36,6 +36,7 @@
     <ClInclude Include="source\util\game_state.hpp" />
     <ClInclude Include="source\util\loading_state.h" />
     <ClInclude Include="source\util\menu_state.h" />
+    <ClInclude Include="source\util\music_player.hpp" />
     <ClInclude Include="source\util\parallel_task.h" />
     <ClInclude Include="source\util\particle.hpp" />
     <ClInclude Include="source\util\particle_node.hpp" />
@@ -44,6 +45,7 @@
     <ClInclude Include="source\util\ResourceIdentifiers.hpp" />
     <ClInclude Include="source\util\scene_node.hpp" />
     <ClInclude Include="source\util\settings_state.hpp" />
+    <ClInclude Include="source\util\sound_player.hpp" />
     <ClInclude Include="source\util\sprite_node.hpp" />
     <ClInclude Include="source\util\state.hpp" />
     <ClInclude Include="source\util\StateIdentifiers.hpp" />
@@ -77,6 +79,7 @@
     <ClCompile Include="source\util\game_state.cpp" />
     <ClCompile Include="source\util\loading_state.cpp" />
     <ClCompile Include="source\util\menu_state.cpp" />
+    <ClCompile Include="source\util\music_player.cpp" />
     <ClCompile Include="source\util\parallel_task.cpp" />
     <ClCompile Include="source\util\particle.cpp" />
     <ClCompile Include="source\util\particle_node.cpp" />
@@ -85,6 +88,7 @@
     <ClCompile Include="source\util\resource_holder.inl" />
     <ClCompile Include="source\util\scene_node.cpp" />
     <ClCompile Include="source\util\settings_state.cpp" />
+    <ClCompile Include="source\util\sound_player.cpp" />
     <ClCompile Include="source\util\sprite_node.cpp" />
     <ClCompile Include="source\util\state.cpp" />
     <ClCompile Include="source\util\state_stack.cpp" />
@@ -183,7 +187,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -214,7 +218,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

@@ -1,5 +1,6 @@
 #include "label.hpp"
 #include "../util/resource_holder.hpp"
+#include "../util/resource_holder.inl"
 
 GUI::Label::Label(const std::string& text, const FontHolder& fonts)
     : mText(text, fonts.get(Fonts::Main), 16)

@@ -9,6 +9,8 @@
 #include "../model/player.h"
 
 #include <memory>
+#include "music_player.hpp"
+#include "sound_player.hpp"
 
 class StateStack;
 
@@ -19,12 +21,14 @@ public:
 
 	struct Context 
 	{
-		Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts, Player& player);
+		Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts, Player& player, MusicPlayer& music, SoundPlayer& sounds);
 
-		sf::RenderWindow* window;
-		TextureHolder* textures;
-		FontHolder* fonts;
-		Player* player;
+		sf::RenderWindow*		window;
+		TextureHolder*			textures;
+		FontHolder*						fonts;
+		Player*							player;
+		MusicPlayer*			music;
+		SoundPlayer*			sounds;
 	};
 
 	public:

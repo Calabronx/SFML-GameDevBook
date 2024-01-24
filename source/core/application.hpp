@@ -8,6 +8,7 @@
 #include "../util/ResourceIdentifiers.hpp"
 #include "../model/player.h"
 #include "../util/state_stack.hpp"
+#include "../util/music_player.hpp"
 
 class Application
 {
@@ -31,6 +32,8 @@ private:
 	FontHolder          mFonts;
 	Player				mPlayer;
 
+	SoundPlayer			mSounds;
+	MusicPlayer			mMusic;
 	StateStack          mStateStack;
 
 	sf::Text			mStatisticsText;

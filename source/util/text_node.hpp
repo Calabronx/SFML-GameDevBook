@@ -3,7 +3,6 @@
 #define TEXTNODE_HPP
 
 #include<SFML/Graphics.hpp>
-#include "resource_holder.hpp"
 #include "ResourceIdentifiers.hpp"
 #include "scene_node.hpp"
 

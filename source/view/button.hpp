@@ -6,6 +6,7 @@
 #include<functional>
 
 #include "component.hpp"
+#include "../util/state.hpp"
 #include"../util/ResourceIdentifiers.hpp"
 
 namespace GUI 
@@ -25,7 +26,7 @@ public:
 	};
 
 public:
-	Button(const FontHolder& fonts, const TextureHolder& textures);
+	Button(State::Context context);
 	void setCallback(Callback callback);
 	void setText(const std::string& text);
 	void setToggle(bool flag);
@@ -51,6 +52,7 @@ private:
 	sf::Sprite	mSprite;
 	sf::Text	mText;
 	bool		mIsToggle;
+	SoundPlayer& mSounds;
 };
 
 }

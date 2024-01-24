@@ -19,7 +19,7 @@ SettingsState::SettingsState(StateStack& stack, Context context)
 
 	updateLabels();
 
-	auto backButton = std::make_shared<GUI::Button>(*context.fonts, *context.textures);
+	auto backButton = std::make_shared<GUI::Button>(context);
 	backButton->setPosition(80.0f, 375.0f);
 	backButton->setText("Back");
 	backButton->setCallback(std::bind(&SettingsState::requestStackPop, this));
@@ -78,7 +78,7 @@ void SettingsState::updateLabels()
 
 void SettingsState::addButtonLabel(Player::Action action, float y, const std::string& text, Context context)
 {
-	mBindingButtons[action] = std::make_shared<GUI::Button>(*context.fonts, *context.textures);
+	mBindingButtons[action] = std::make_shared<GUI::Button>(context);
 	mBindingButtons[action]->setPosition(80.0f, y);
 	mBindingButtons[action]->setText(text);
 	mBindingButtons[action]->setToggle(true);

@@ -1,5 +1,6 @@
 #include "text_node.hpp"
 #include "utility.hpp"
+#include "resource_holder.hpp"
 
 TextNode::TextNode(const FontHolder& fonts, const std::string& text)
 {

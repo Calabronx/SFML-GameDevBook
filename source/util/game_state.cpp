@@ -5,6 +5,7 @@ GameState::GameState(StateStack& stack, Context context)
 	, mWorld(*context.window, *context.fonts)
 	, mPlayer(*context.player)
 {
+	context.music->play(Music::MissionTheme);
 }
 
 void GameState::draw()
